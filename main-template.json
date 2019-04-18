@@ -25,17 +25,6 @@
                 "description": "Choose Yes/No to add Modbus VM as part of Solution deployment, for more information about the Modbus VM navigate to https://github.com/nvtuluva/iot-edge-dynocard/wiki/Deployment-Guide in wiki"
             }
         },
-        "MLVM": {
-            "type": "string",
-            "defaultValue": "",
-            "allowedValues": [
-                "Yes",
-                "No"
-            ],
-            "metadata": {
-                "description": "Choose Yes/No to add ML VM as part of Solution deployment, for more information about the ML VM navigate to https://github.com/nvtuluva/iot-edge-dynocard/wiki/Deployment-Guide in wiki"
-            }
-        },
         "dataLakelocation": {
             "type": "string",
             "defaultValue": "eastus2",
@@ -343,10 +332,8 @@
             "addressPrefix": "10.0.0.0/16",
             "subnetName1": "edgesubnet",
             "subnetName2": "dynocardsubnet",
-            "subnetName3": "mlsubnet",
             "subnetPrefix1": "10.0.1.0/24",
-            "subnetprefix2": "10.0.2.0/24",
-            "subnetprefix3": "10.0.3.0/24"
+            "subnetprefix2": "10.0.2.0/24"
         },
         "dynocardVmSettings": {
             "dynoCardVmName": "dynocardVM",
@@ -368,34 +355,6 @@
             "vcredist": "[parameters('vcredist')]",
             "plcsimulatorv2": "[parameters('plcsimulatorv2')]",
             "dynocard": "[concat(variables('baseUrl'),'builds/DynoCard.vbs')]"
-        },
-        "azuremlSettings": {
-            "mlVmName": "AzuremlVM",
-            "location": "[parameters('geo-paired-primary-region')]",
-            "networkInterfaceName": "ml-nic",
-            "mlUsername": "[parameters('vmsUsername')]",
-            "mlPassword": "[parameters('vmsPassword')]",
-            "imagePublisher": "MicrosoftWindowsDesktop",
-            "imageOffer": "Windows-10",
-            "sku": "RS3-Pro",
-            "dnsLabelPrefix": "[concat('mldns',variables('suffix'))]",
-            "publicIpAddressName": "[concat('mlpip',variables('suffix'))]",
-            "publicIpAddressSku": "Basic",
-            "networkSecurityGroupName": "ml-nsg",
-            "publicIpAddressType": "Static",
-            "mlUrl": "[concat(variables('baseUrl'),'scripts/customscript.ps1')]",
-            "installdocker": "[concat(variables('baseUrl'),'scripts/installdocker.ps1')]"
-        },
-        "machineLearning": {
-            "storageAccountName": "[concat('oilgasstorage',variables('suffix'))]",
-            "expaccname": "[concat('oilgasexpacc',variables('suffix'))]",
-            "workspacename": "[concat('mlworkspace',variables('suffix'))]",
-            "location": "[parameters('machineLearningLocation')]",
-            "seatCount": 2,
-            "modelManagementAccountName": "[concat('oilgasmodelmanage',variables('suffix'))]",
-            "modelManagementAccountSkuName": "DEVTEST",
-            "modelManagementAccountSkuTier": "DEVTEST",
-            "rgname": "[resourceGroup().name]"
         },
         "baseUrl": "https://raw.githubusercontent.com/nvtuluva/iot-edge-dynocard/master/",
         "suffix": "[substring(uniqueString(resourceGroup().id), 0, 5)]",
@@ -430,7 +389,7 @@
         {
             "name": "Vnet",
             "type": "Microsoft.Resources/deployments",
-            "condition": "[or(equals(parameters('Edge VM + Simulator VM'), 'Yes'),equals(parameters('MLVM'),'Yes'))]",
+            "condition": "[equals(parameters('Edge VM + Simulator VM'), 'Yes')]",
             "apiVersion": "[variables('apiVersion')]",
             "properties": {
                 "mode": "Incremental",
@@ -582,48 +541,6 @@
                     },
                     "dynocardVmSettings": {
                         "value": "[variables('dynocardVmSettings')]"
-                    }
-                }
-            }
-        },
-        {
-            "name": "AzuremlVm",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "[variables('apiVersion')]",
-            "condition": "[equals(parameters('MLVM'), 'Yes')]",
-            "dependsOn": [
-                "Vnet"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[concat(variables('baseUrl'),'nested/azuremlvm.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "vnetSettings": {
-                        "value": "[variables('vnetSettings')]"
-                    },
-                    "azuremlSettings": {
-                        "value": "[variables('azuremlSettings')]"
-                    }
-                }
-            }
-        },
-        {
-            "name": "MachinelearningAccount",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "[variables('apiVersion')]",
-            "dependsOn": [],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[concat(variables('baseUrl'),'nested/machinelearning.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "machineLearning": {
-                        "value": "[variables('machineLearning')]"
                     }
                 }
             }
