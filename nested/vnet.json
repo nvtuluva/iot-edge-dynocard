@@ -31,14 +31,7 @@
                         "properties": {
                             "addressPrefix": "[parameters('vnetSettings').subnetPrefix2]"
                         }
-                    },
-                    {
-                        "name": "[parameters('vnetSettings').subnetName3]",
-                        "properties": {
-                            "addressPrefix": "[parameters('vnetSettings').subnetPrefix3]"
-                        }
                     }
-                    
                 ]
             }
         }
