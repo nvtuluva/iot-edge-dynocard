@@ -356,7 +356,7 @@
             "plcsimulatorv2": "[parameters('plcsimulatorv2')]",
             "dynocard": "[concat(variables('baseUrl'),'builds/DynoCard.vbs')]"
         },
-        "baseUrl": "https://raw.githubusercontent.com/nvtuluva/iot-edge-dynocard/master/",
+        "baseUrl": "https://raw.githubusercontent.com/nvtuluva/iot-edge-dynocard/dev/",
         "suffix": "[substring(uniqueString(resourceGroup().id), 0, 5)]",
         "serviceBusNamespaceName": "[concat('snamespace',variables('suffix'))]",
         "serviceBusNamespaceNameDr": "[concat('snamespacedr',variables('suffix'))]",
