@@ -1,0 +1,136 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataScienceVmUsername": {
+            "type": "String",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Please provide VM's login Username.This Username will be used for data science vm"
+            }
+        },
+        "dataScienceVmPassword": {
+            "type": "securestring",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Please provide VM's login password, This password will be used for datascience vm"
+            }
+        },
+        "appInsightsLocation": {
+            "type": "string",
+            "defaultValue": "westus2",
+            "allowedValues": [
+                "eastus",
+                "northeurope",
+                "southcentralus",
+                "southeastasia",
+                "westeurope",
+                "westus2"
+            ],
+            "metadata": {
+                "description": "specify the region for application insights, for more information about the appInsightsLocation navigate to https://github.com/nvtuluva/iot-edge-dynocard/wiki/Deployment-Guide in wiki"
+            }
+        }
+    },
+    "variables": {
+        "machineLearning": {
+            "location": "[variables('location')]",
+            "machineLearningApiVersion": "2018-11-19",
+            "mlworkspaceName": "[concat('mlworkspace', variables('suffix'))]",
+            "keyVaultName": "[concat('mlkeyvault', variables('suffix'))]",
+            "keyVaultApiVersion": "2015-06-01",
+            "storageApiVersion": "2016-12-01",
+            "newStorageAccountType": "Standard_LRS",
+            "newStorageAccountName": "[concat('mlstorage', variables('suffix'))]",
+            "appInsightsType": "web",
+            "appInsightsKind": "web",
+            "appInsightsName": "[concat('mlappinsight', variables('suffix'))]",
+            "appInsightsLocation": "[parameters('appInsightsLocation')]",
+            "appInsightsApiVersion": "2015-05-01",
+            "keyVaultId": "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
+            "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', variables('newStorageAccountName'))]",
+            "appInsightsId": "[resourceId('Microsoft.Insights/components', variables('appInsightsName'))]",
+            "keyVaultTenant": "[subscription().tenantId]"
+        },
+        "dataScienceVmSettings": {
+            "dataScienceVmNicName": "datasciencenic",
+            "dataScienceVmNsgName": "datasciencensg",
+            "location": "[variables('location')]",
+            "dataScienceVnetName": "[concat('datasciencevnet',variables('suffix'))]",
+            "subnetName": "default",
+            "addressPrefixes": [
+                "172.16.6.0/24"
+            ],
+            "subnets": [
+                {
+                    "name": "default",
+                    "properties": {
+                        "addressPrefix": "172.16.6.0/24"
+                    }
+                }
+            ],
+            "subnetAddressPrefix": "172.16.2.0/24",
+            "suffix": "[substring(uniqueString(resourceGroup().id), 0, 5)]",
+            "dataScienceVmName": "[concat('datavm',variables('suffix'))]",
+            "osDiskType": "Premium_LRS",
+            "publisher": "microsoft-dsvm",
+            "offer": "dsvm-windows",
+            "sku": "server-2016",
+            "version": "latest",
+            "datascienceVmsize": "Standard_B2s",
+            "publicIpAddressSku": "Basic",
+            "publicIpAddressType": "Dynamic",
+            "publciIpName": "[concat('datascienceip',variables('suffix'))]",
+            "diagStgAccType": "Standard_LRS",
+            "diagStgAccName": "[concat('datasciencestg',variables('suffix'))]",
+            "diagStgAccKind": "Storage",
+            "dataScienceVmUsername": "[parameters('dataScienceVmUsername')]",
+            "dataScienceVmPassword": "[parameters('dataScienceVmPassword')]"
+        },
+        "apiVersion": "2016-02-01",
+        "location": "[resourceGroup().location]",
+        "baseUrl": "https://raw.githubusercontent.com/nvtuluva/iot-edge-dynocard/ml/",
+        "suffix": "[substring(uniqueString(resourceGroup().id), 0, 5)]",
+        "keyVaultName": "[concat('mlkeyvault', variables('suffix'))]",
+        "newStorageAccountName": "[concat('mlstorage', variables('suffix'))]",
+        "appInsightsName": "[concat('mlappinsight', variables('suffix'))]"
+    },
+    "resources": [
+        {
+            "name": "MachinelearningAccount",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "[variables('apiVersion')]",
+            "dependsOn": [],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('baseUrl'),'MLtest/nested/new-machinelearning.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "machineLearning": {
+                        "value": "[variables('machineLearning')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "DynoCardVm",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "[variables('apiVersion')]",
+            "dependsOn": [],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('baseUrl'),'MLtest/nested/datascience-vm.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "dataScienceVmSettings": {
+                        "value": "[variables('dataScienceVmSettings')]"
+                    }
+                }
+            }
+        }
+    ]
+}
