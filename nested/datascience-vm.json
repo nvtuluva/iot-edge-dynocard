@@ -128,7 +128,7 @@
         {
             "type": "Microsoft.Network/publicIpAddresses",
             "apiVersion": "2019-02-01",
-            "name": "[parameters('dataScienceVmSettings').publciIpName]",
+            "name": "[parameters('dataScienceVmSettings').publicIpName]",
             "location": "[parameters('dataScienceVmSettings').location]",
             "sku": {
                 "name": "[parameters('dataScienceVmSettings').publicIpAddressSku]"
