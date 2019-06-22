@@ -22,7 +22,7 @@
             "location": "[parameters('dataScienceVmSettings').location]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkSecurityGroups/', parameters('dataScienceVmSettings').dataScienceVmNsgName)]",
-                "[concat('Microsoft.Network/publicIpAddresses/', parameters('dataScienceVmSettings').publciIpName)]"
+                "[concat('Microsoft.Network/publicIpAddresses/', parameters('dataScienceVmSettings').publicIpName)]"
             ],
             "properties": {
                 "ipConfigurations": [
