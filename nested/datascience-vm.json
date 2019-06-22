@@ -135,7 +135,10 @@
                 "name": "[parameters('dataScienceVmSettings').publicIpAddressSku]"
             },
             "properties": {
-                "publicIpAllocationMethod": "[parameters('dataScienceVmSettings').publicIpAddressType]"
+                "publicIpAllocationMethod": "[parameters('dataScienceVmSettings').publicIpAddressType]",
+                 "dnsSettings": {
+                    "domainNameLabel": "[parameters('dataScienceVmSettings').dnsLabelPrefix]"
+                }
             }
         },
         {
