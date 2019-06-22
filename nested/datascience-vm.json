@@ -207,6 +207,10 @@
         "adminUsername": {
             "type": "String",
             "value": "[parameters('dataScienceVmSettings').dataScienceVmUsername]"
-        }
+        },
+        "hostname": {
+            "type": "string",
+            "value": "[reference(parameters('dataScienceVmSettings').publicIpName).dnsSettings.fqdn]"
+         }
     }
 }
