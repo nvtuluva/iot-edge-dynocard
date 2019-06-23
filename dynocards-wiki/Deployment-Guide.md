@@ -219,15 +219,25 @@ Linux VM
 **Edge VM** is used to create IoT Edge device and installs modules in IoT Edge device
 
 * 2-Web App
+
 * 1-Application Insights
+
 * 1-Data Lake Storage
+
 * 1-IoT HUB
+
 * 1-Log analytics
+
 * 1-Logic app
+
 * 1-service bus namespace
+
 * 2-SQL database
+
 * 1-Storage account
+
 * 1-Stream Analytics job
+
 * 1-Traffic Manager
 
 17. Once the solution is deployed successfully navigate to the resource group, select the created **resource group** to view the list of resources that are created in the Resource Group as shown in the following figure.
@@ -255,7 +265,9 @@ The Outputs section consists of the values that are returned from deployment. Th
 ### 4.2 ARM Template Deployment Using Azure CLI
 
 Azure CLI is used to deploy your resources to Azure. The Resource Manager template you deploy, can either be a local file on your machine, or an external file that is in a repository like GitHub.  
+
 Azure Cloud Shell is an interactive, browser-accessible shell for managing Azure resources. Cloud Shell enables access to a browser-based command-line experience built with Azure management tasks in mind. 
+
 Deployment can proceed within the Azure Portal via Azure Cloud Shell. 
 
 Customize main-template.parameters.json file 
@@ -447,6 +459,7 @@ Value: **[Device connection string-primary key]**
 Need to perform device twin operation on Modbus IoT Edge Module when solution deployed with an option Modbus VM as **No**. when Modbus VM deployment option is chosen as **no** then there is no Simulator VM is deployed.
 
 Install IoTedge Modules by executing **iot-edge-Manual.sh** Under scripts from GitHub repo script by providing Required input parameters.
+
 https://github.com/nvtuluva/iot-edge-dynocard/blob/master/scripts/iot-edge-Manual.sh
 
 Needs to update slave connection IP address in Modbus module configuration in IoT Edge Modules with actual Simulator IP address.
@@ -626,8 +639,11 @@ Go back to Data science VM and update the config.json file.
 
 **{
     **"subscription_id": "xxxxxxxxxxxxxxxxxxxxx",
-    "resource_group": " AS-OilNGas0623",
-    "workspace_name": " mlworkspace43ysm"**
+    
+    
+   **"resource_group": " AS-OilNGas0623",**
+    
+   **"workspace_name": " mlworkspace43ysm"**
 }**
 
 Save the config.json file
@@ -732,7 +748,6 @@ First, let's import the azureml.core package. This contains core packages, modul
 
 Copy the below code and paste it in the first cell of the Notebook.
 
-
 import azureml.core
 
 from azureml.core import Workspace, Experiment, Run
@@ -781,33 +796,51 @@ X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40], 
 Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female', 'female', 'male', 'male']
 
 #classify the data
+
 clf = SVC()
+
 clf = clf.fit(X, Y)
 
 #predict a value & show accuracy
+
 X_old = [[190, 70, 43]]
+
 print('Old Sample:', X_old)
+
 print('Predicted value:', clf.predict(X_old))
+
 print('Accuracy', clf.score(X,Y))
 
 #create the outputs folder
+
 #os.makedirs('./outputs', exist_ok=True)
 
 #export model
+
 print('Export the model to model.pkl')
+
 f = open('./model.pkl', 'wb')
+
 pickle.dump(clf, f)
+
 f.close()
 
 #import model
+
 print('')
+
 print('Import the model from model.pkl')
+
 f2 = open('./model.pkl', 'rb')
+
 clf2 = pickle.load(f2)
 
 #predict new value
+
 X_new = [[154, 54, 35]]
+
 print('New Sample:', X_new)
+
 print('Predicted class:', clf2.predict(X_new))
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d038.png) 
@@ -990,194 +1023,262 @@ Insert a new cell and paste the below code to start the experiment logging.
  
 Insert a new cell to paste the below content. 
 
-*%%writefile score4dc.py
+%%writefile score4dc.py
+
 #Common modules
+
 import os
+
 from azureml.datacollector import ModelDataCollector
+
 from azureml.webservice_schema.data_types import DataTypes
+
 from azureml.webservice_schema.schema_generation import generate_schema
+
 from azureml.webservice_schema.sample_definition import SampleDefinition
+
 #from azureml.api.schema.dataTypes import DataTypes
+
 #from azureml.api.schema.sampleDefinition import SampleDefinition
+
 #from azureml.api.realtime.services import generate_schema
 
 from inference_schema.schema_decorators import input_schema, output_schema
+
 from inference_schema.parameter_types.numpy_parameter_type import NumpyParameterType
 
-#
 #Init routine - Web service
-#
 
 def init():  
 
    #Load module
+   
    from sklearn.externals import joblib
 
    #Variables
+   
    global model
     
    #Load model
+   
    model = joblib.load('model.pkl')
 
-
-
-#
 #Run routine - Web service
-#
 
 def run(input_str):
 
    #Load module
+   
    import json
 
    #What type of input
+   
    #print("Input_str: type")
+   
    #print (type(input_str))
+   
    #print ("")
+   
    #print(input_str)
 
    #Convert to dictionary
+   
    if type(input_str) is str:
-       input = json.loads(input_str)
-    else:
-        input = input_str
+   
+   input = json.loads(input_str)
+   
+  else:
+    
+   input = input_str
 
    #Fake a prediction
+   
    prediction = write_msg(input['Id'], input['Timestamp']);
 
    #Return json
+   
    return prediction
 
-
-#
 #Read Input Message Rountine - Read in mod bus sample message
-#
 
 def read_msg():
 
    #Load module
+   
    import json
 
    #Create some json input
+   
    in1 = ""
+   
    in1 += '{ '
+   
    in1 += '"Id": 0, '
+   
    in1 += '"Timestamp": "2018-04-04T22:42:59+00:00", '
+   
    in1 += '"NumberOfPoints": 400, '
-    in1 += '"MaxLoad": 19500, '
-    in1 += '"MinLoad": 7500, '
-    in1 += '"StrokeLength": 1200, '
-    in1 += '"StrokePeriod": 150, '
-    in1 += '"CardType": 0, '
-    in1 += '"CardPoints": [{ '
-    in1 += '  "Load": 11744, '
-    in1 += '  "Position": 145 }]'
-    in1 += '} '
+   
+   in1 += '"MaxLoad": 19500, '
+   
+   in1 += '"MinLoad": 7500, '
+   
+   in1 += '"StrokeLength": 1200, '
+   
+   in1 += '"StrokePeriod": 150, '
+   
+   in1 += '"CardType": 0, '
+   
+   in1 += '"CardPoints": [{ '
+   
+   in1 += '  "Load": 11744, '
+   
+   in1 += '  "Position": 145 }]'
+   
+   in1 += '} '
 
    #Return sample message
+   
    return json.loads(in1)
 
-
-#
 #Number 2 Class Rountine - Classify the anomaly.
-#
 
 def number_to_class(argument):
-    switcher = {
-        1: "Full Pump",
-        2: "Flowing Well, Rod Part, Inoperative Pump",
-        3: "Bent Barrel, Sticking Pump",
-        4: "Pump Hitting Up or Down",
-        5: "Fluid Friction",
-        6: "Gas Interference",
-        7: "Drag Friction",
-        8: "Tube Movement",
-        9: "Worn or Split Barrel",
-        10: "Fluid Pound",
-        11: "Worn Standing Value",
-        12: "Worn Plunger or Traveling Value"
-    };
-    return switcher.get(argument, "Undefined");
+   
+   switcher = {
+   
+   1: "Full Pump",
+   
+   2: "Flowing Well, Rod Part, Inoperative Pump",
+   
+   3: "Bent Barrel, Sticking Pump",
+   
+   4: "Pump Hitting Up or Down",
+   
+   5: "Fluid Friction",
+   
+   6: "Gas Interference",
+   
+   7: "Drag Friction",
+   
+   8: "Tube Movement",
+   
+   9: "Worn or Split Barrel",
+   
+   10: "Fluid Pound",
+   
+   11: "Worn Standing Value",
+   
+   12: "Worn Plunger or Traveling Value"
+   
+   };
+   
+   return switcher.get(argument, "Undefined");
 
 
-#
 #Write Output Message Rountine - Randomly classify the data.
-#
 
 def write_msg(id, stamp):
 
    #Load module
+   
    import json
-    import random;
+   
+   import random;
 
    #Five percent left tail
+   
    occurs = 95
 
    #Grab a number 1.0 to 100.0
+   
    pct1 = random.uniform(1, 100);
 
    #Create some json output
+   
    out1 = ""
+   
    out1 += '{ "Id": "' + str(id) + '", '
+   
    out1 += '"Timestamp": "'+ stamp + '", '
 
    #Report a anomaly?
+   
    if (pct1 >= occurs):
-        out1 += '"Anomaly": "True", '
-    else:
-        out1 += '"Anomaly": "False", "Class": "Full Pump" }'
+   
+   out1 += '"Anomaly": "True", '
+   
+   else:
+   
+   out1 += '"Anomaly": "False", "Class": "Full Pump" }'
 
    #Choose random issue
-   if (pct1 >= occurs):
-       pct2 = int(random.uniform(1, 12)) + 1;
-        out1 += '"Class": "' + number_to_class(pct2) + '" }'
+
+if (pct1 >= occurs):
+
+pct2 = int(random.uniform(1, 12)) + 1;
+
+out1 += '"Class": "' + number_to_class(pct2) + '" }'
 
    #Return sample message
-   return json.loads(out1)
 
+return json.loads(out1)
 
-#
 #Main routine - Test init() & run()
-#
 
 def main():
 
    #Turn on data collection debug mode to view output in stdout
+   
    os.environ["AML_MODEL_DC_DEBUG"] = 'true';
-    os.environ["AML_MODEL_DC_STORAGE_ENABLED"] = 'true';
+   
+   os.environ["AML_MODEL_DC_STORAGE_ENABLED"] = 'true';
 
    #create the outputs folder
+   
    os.makedirs('./outputs', exist_ok=True);
 
    #Read in json, mod bus sample msg
+   
    input_msg = read_msg();
 
    #Debugging - remove when deploying
+   
    #print (" ");
+   
    #print ("Input Json:")
+   
    #print (input_msg);
 
    #Test init function
+   
    init();
 
    #Write out json, sample response msg
+   
    output_msg = run(input_msg);
 
    #Debugging - remove when deploying
+   
    #print (" ");
-    #print ("Output Json:")
-    print(output_msg);
+   
+   #print ("Output Json:")
+   
+   print(output_msg);
 
    #Sample input string
+   
    input_str = {"input_str": SampleDefinition(DataTypes.STANDARD, input_msg)};
 
    #Generate swagger document for web service
+   
    generate_schema(run_func=run, inputs=input_str, filepath='./outputs/service_schema.json');
-
-
+   
 #Call main
+
 if __name__ == "__main__":
-    main()
+
+main()
     
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d070.png)    
 
@@ -1270,27 +1371,33 @@ Click on myenv.yaml and replace the below content in the file.
 
  #be automatically provisioned for runs with userManagedDependencies=False.
 
-
 #Details about the Conda environment file format:
 
 #https://conda.io/docs/user-guide/tasks/manage-environments.html#create-env-file-manually
 
 
 name: project_environment
-dependencies:
-  #The python interpreter version.
 
-  #Currently Azure ML only supports 3.5.2 and later.
+dependencies:
+
+#The python interpreter version.
+
+#Currently Azure ML only supports 3.5.2 and later.
 
 - python=3.6.2
 
 - pip:
-    #Required packages for AzureML execution, history, and data preparation.
+
+#Required packages for AzureML execution, history, and data preparation.
 
   - azureml-defaults
+  
   - scikit-learn==0.20.0
+  
   - azureml.webservice-schema
+  
   - inference-schema[numpy-support]
+  
   - azureml.datacollector==0.1.0a13
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d086.png)
@@ -1411,7 +1518,7 @@ Run next 3 cells. For these 3 cells you won’t get any output.
  
 Run the next cell, to create image and to deploy web service.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d103.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d0103.png)
  
 Run the next cell to print the scoring uri.
 
@@ -1424,79 +1531,150 @@ Run the next cell to get the logs.
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d0105.png)
 
 You will get the below logs.
+
 2019-06-19T07:27:25,897775737+00:00 - iot-server/run 
+
 2019-06-19T07:27:25,913429346+00:00 - gunicorn/run 
+
 2019-06-19T07:27:25,914979327+00:00 - rsyslog/run 
+
 2019-06-19T07:27:25,915555020+00:00 - nginx/run 
+
 EdgeHubConnectionString and IOTEDGE_IOTHUBHOSTNAME are not set. Exiting...
+
 2019-06-19T07:27:26,113551005+00:00 - iot-server/finish 1 0
+
 2019-06-19T07:27:26,114691791+00:00 - Exit code 1 is normal. Not restarting iot-server.
+
 Starting gunicorn 19.6.0
+
 Listening at: http://127.0.0.1:9090 (14)
+
 Using worker: sync
+
 worker timeout is set to 300
+
 Booting worker with pid: 47
+
 Initializing logger
+
 Starting up app insights client
+
 Starting up request id generator
+
 Starting up app insight hooks
+
 Invoking user's init function
+
 Users's init has completed successfully
-/opt/miniconda/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator SVC from version 0.19.1 when using version 0.20.0. This might lead to breaking code or invalid results. Use at your own risk.
+
+/opt/miniconda/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator SVC from version 0.19.1 when 
+
+using version 0.20.0. This might lead to breaking code or invalid results. Use at your own risk.
+  
   UserWarning)
+
 Scoring timeout setting is not found. Use default timeout: 3600000 ms
+
 Received input: {}
+
 Headers passed in (total 11):
-	Host: localhost:5001
-	X-Real-Ip: 127.0.0.1
-	X-Forwarded-For: 127.0.0.1
-	X-Forwarded-Proto: http
-	Connection: close
-	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
-	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
-	Accept-Encoding: gzip, deflate
-	Accept-Language: en-US,en;q=0.9
-	Upgrade-Insecure-Requests: 1
-	X-Ms-Request-Id: 27ae05de-f543-46eb-9795-d5c0185ee9c0
+	
+Host: localhost:5001
+	
+X-Real-Ip: 127.0.0.1
+	
+X-Forwarded-For: 127.0.0.1
+	
+X-Forwarded-Proto: http
+	
+Connection: close
+	
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+	
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+	
+Accept-Encoding: gzip, deflate
+	
+Accept-Language: en-US,en;q=0.9
+	
+Upgrade-Insecure-Requests: 1
+	
+X-Ms-Request-Id: 27ae05de-f543-46eb-9795-d5c0185ee9c0
+
 Scoring Timer is set to 3600.0 seconds
+
 Encountered Exception: Traceback (most recent call last):
+  
   File "/var/azureml-app/app.py", line 207, in run_scoring
-    response = invoke_user_with_timer(service_input, request_headers)
+    
+   response = invoke_user_with_timer(service_input, request_headers)
+  
   File "/var/azureml-app/app.py", line 275, in invoke_user_with_timer
-    result = user_main.run(**params)
-  File "/var/azureml-app/main.py", line 47, in run
-    return_obj = driver_module.run(**arguments)
-  File "score4dc.py", line 54, in run
-    prediction = write_msg(input['Id'], input['Timestamp']);
+    
+   result = user_main.run(**params)
+ 
+ File "/var/azureml-app/main.py", line 47, in run
+   
+   return_obj = driver_module.run(**arguments)
+ 
+ File "score4dc.py", line 54, in run
+   
+   prediction = write_msg(input['Id'], input['Timestamp']);
+
 KeyError: 'Id'
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
+  
   File "/opt/miniconda/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
+   
+   rv = self.dispatch_request()
+  
   File "/opt/miniconda/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
+    
+   return self.view_functions[rule.endpoint](**req.view_args)
+  
   File "/var/azureml-app/app.py", line 101, in get_prediction_realtime
-    return run_scoring(service_input, request.headers)
+   
+   return run_scoring(service_input, request.headers)
+  
   File "/var/azureml-app/app.py", line 219, in run_scoring
-    raise RunFunctionException(str(exc))
+    
+   raise RunFunctionException(str(exc))
+
 run_function_exception.RunFunctionException
 
 500
-127.0.0.1 - - [19/Jun/2019:07:41:44 +0000] "GET /score HTTP/1.0" 500 4 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+
+127.0.0.1 - - [19/Jun/2019:07:41:44 +0000] "GET /score HTTP/1.0" 500 4 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) 
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+
 127.0.0.1 - - [19/Jun/2019:07:41:44 +0000] "GET /favicon.ico HTTP/1.0" 404 232 "http://a157fdbc-21dd-486b-9eb8-3390238b1ac6.westeurope.azurecontainer.io/score" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+
 127.0.0.1 - - [19/Jun/2019:07:43:59 +0000] "GET /robots.txt HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:43:59 +0000] "GET /nmaplowercheck1560930239 HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:43:59 +0000] "POST / HTTP/1.0" 405 178 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:43:59 +0000] "POST /sdk HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:43:59 +0000] "GET /.git/HEAD HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:00 +0000] "GET /HNAP1 HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:00 +0000] "GET /favicon.ico HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:01 +0000] "GET /administrator HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:01 +0000] "POST / HTTP/1.0" 405 178 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:01 +0000] "GET /admin/ HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:01 +0000] "GET /random404page/ HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:02 +0000] "GET /rails/info/properties HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
 
 Run the next cell to test the web service.
@@ -1504,7 +1682,9 @@ Run the next cell to test the web service.
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d0106.png)
  
 You will get the below output.
+
 POST to url http://a157fdbc-21dd-486b-9eb8-3390238b1ac6.westeurope.azurecontainer.io/score
+
 prediction: {"Id": "0", "Timestamp": "2018-04-04T22:42:59+00:00", "Anomaly": "False", "Class": "Full Pump"}
 
 Run the next cell to print the logs.
@@ -1512,187 +1692,354 @@ Run the next cell to print the logs.
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d0107.png)
  
 You will get below logs.
+
 2019-06-19T07:27:25,897775737+00:00 - iot-server/run 
+
 2019-06-19T07:27:25,913429346+00:00 - gunicorn/run 
+
 2019-06-19T07:27:25,914979327+00:00 - rsyslog/run 
+
 2019-06-19T07:27:25,915555020+00:00 - nginx/run 
+
 EdgeHubConnectionString and IOTEDGE_IOTHUBHOSTNAME are not set. Exiting...
+
 2019-06-19T07:27:26,113551005+00:00 - iot-server/finish 1 0
+
 2019-06-19T07:27:26,114691791+00:00 - Exit code 1 is normal. Not restarting iot-server.
+
 Starting gunicorn 19.6.0
+
 Listening at: http://127.0.0.1:9090 (14)
+
 Using worker: sync
+
 worker timeout is set to 300
+
 Booting worker with pid: 47
+
 Initializing logger
+
 Starting up app insights client
+
 Starting up request id generator
+
 Starting up app insight hooks
+
 Invoking user's init function
+
 Users's init has completed successfully
-/opt/miniconda/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator SVC from version 0.19.1 when using version 0.20.0. This might lead to breaking code or invalid results. Use at your own risk.
+
+/opt/miniconda/lib/python3.6/site-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator SVC from version 0.19.1 when 
+using version 0.20.0. This might lead to breaking code or invalid results. Use at your own risk.
   UserWarning)
+
 Scoring timeout setting is not found. Use default timeout: 3600000 ms
+
 Received input: {}
+
 Headers passed in (total 11):
-	Host: localhost:5001
-	X-Real-Ip: 127.0.0.1
-	X-Forwarded-For: 127.0.0.1
-	X-Forwarded-Proto: http
-	Connection: close
-	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
-	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
-	Accept-Encoding: gzip, deflate
-	Accept-Language: en-US,en;q=0.9
-	Upgrade-Insecure-Requests: 1
-	X-Ms-Request-Id: 27ae05de-f543-46eb-9795-d5c0185ee9c0
+ 
+ Host: localhost:5001
+ 
+ X-Real-Ip: 127.0.0.1
+ 
+ X-Forwarded-For: 127.0.0.1
+ 
+ X-Forwarded-Proto: http
+ 
+ Connection: close
+ 
+ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+ 
+ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+ 
+ Accept-Encoding: gzip, deflate
+ 
+ Accept-Language: en-US,en;q=0.9
+ 
+ Upgrade-Insecure-Requests: 1
+ 
+ X-Ms-Request-Id: 27ae05de-f543-46eb-9795-d5c0185ee9c0
+
 Scoring Timer is set to 3600.0 seconds
+
 Encountered Exception: Traceback (most recent call last):
+  
   File "/var/azureml-app/app.py", line 207, in run_scoring
-    response = invoke_user_with_timer(service_input, request_headers)
+    
+   response = invoke_user_with_timer(service_input, request_headers)
+  
   File "/var/azureml-app/app.py", line 275, in invoke_user_with_timer
-    result = user_main.run(**params)
+  
+   result = user_main.run(**params)
+  
   File "/var/azureml-app/main.py", line 47, in run
-    return_obj = driver_module.run(**arguments)
+   
+   return_obj = driver_module.run(**arguments)
+  
   File "score4dc.py", line 54, in run
-    prediction = write_msg(input['Id'], input['Timestamp']);
+    
+   prediction = write_msg(input['Id'], input['Timestamp']);
+
 KeyError: 'Id'
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
+  
   File "/opt/miniconda/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
+   
+   rv = self.dispatch_request()
+  
   File "/opt/miniconda/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
+   
+   return self.view_functions[rule.endpoint](**req.view_args)
+  
   File "/var/azureml-app/app.py", line 101, in get_prediction_realtime
-    return run_scoring(service_input, request.headers)
+  
+   return run_scoring(service_input, request.headers)
+  
   File "/var/azureml-app/app.py", line 219, in run_scoring
-    raise RunFunctionException(str(exc))
+   
+   raise RunFunctionException(str(exc))
+
 run_function_exception.RunFunctionException
 
 500
+
 127.0.0.1 - - [19/Jun/2019:07:41:44 +0000] "GET /score HTTP/1.0" 500 4 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+
 127.0.0.1 - - [19/Jun/2019:07:41:44 +0000] "GET /favicon.ico HTTP/1.0" 404 232 "http://a157fdbc-21dd-486b-9eb8-3390238b1ac6.westeurope.azurecontainer.io/score" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+
 127.0.0.1 - - [19/Jun/2019:07:43:59 +0000] "GET /robots.txt HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:43:59 +0000] "GET /nmaplowercheck1560930239 HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:43:59 +0000] "POST / HTTP/1.0" 405 178 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:43:59 +0000] "POST /sdk HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:43:59 +0000] "GET /.git/HEAD HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:00 +0000] "GET /HNAP1 HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:00 +0000] "GET /favicon.ico HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:01 +0000] "GET /administrator HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:01 +0000] "POST / HTTP/1.0" 405 178 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:01 +0000] "GET /admin/ HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:01 +0000] "GET /random404page/ HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 127.0.0.1 - - [19/Jun/2019:07:44:02 +0000] "GET /rails/info/properties HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
 Received input: {}
+
 Headers passed in (total 11):
-	Host: localhost:5001
-	X-Real-Ip: 127.0.0.1
-	X-Forwarded-For: 127.0.0.1
-	X-Forwarded-Proto: http
-	Connection: close
-	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
-	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
-	Accept-Encoding: gzip, deflate
-	Accept-Language: en-US,en;q=0.9
-	Upgrade-Insecure-Requests: 1
-	X-Ms-Request-Id: 70fd2dd4-7700-4fa9-884d-30df36bbfbb4
+	
+ Host: localhost:5001
+	
+ X-Real-Ip: 127.0.0.1
+	
+ X-Forwarded-For: 127.0.0.1
+	
+ X-Forwarded-Proto: http
+	
+ Connection: close
+	
+ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+	
+ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+	
+ Accept-Encoding: gzip, deflate
+
+ Accept-Language: en-US,en;q=0.9
+	
+ Upgrade-Insecure-Requests: 1
+	
+ X-Ms-Request-Id: 70fd2dd4-7700-4fa9-884d-30df36bbfbb4
+
 Scoring Timer is set to 3600.0 seconds
+
 Encountered Exception: Traceback (most recent call last):
+  
   File "/var/azureml-app/app.py", line 207, in run_scoring
-    response = invoke_user_with_timer(service_input, request_headers)
+    
+   response = invoke_user_with_timer(service_input, request_headers)
+  
   File "/var/azureml-app/app.py", line 275, in invoke_user_with_timer
-    result = user_main.run(**params)
+    
+   result = user_main.run(**params)
+  
   File "/var/azureml-app/main.py", line 47, in run
-    return_obj = driver_module.run(**arguments)
+    
+   return_obj = driver_module.run(**arguments)
+  
   File "score4dc.py", line 54, in run
-    prediction = write_msg(input['Id'], input['Timestamp']);
+    
+   prediction = write_msg(input['Id'], input['Timestamp']);
+
 KeyError: 'Id'
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
+  
   File "/opt/miniconda/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
+    
+   rv = self.dispatch_request()
+  
   File "/opt/miniconda/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
+    
+   return self.view_functions[rule.endpoint](**req.view_args)
+  
   File "/var/azureml-app/app.py", line 101, in get_prediction_realtime
-    return run_scoring(service_input, request.headers)
+   
+   return run_scoring(service_input, request.headers)
+  
   File "/var/azureml-app/app.py", line 219, in run_scoring
-    raise RunFunctionException(str(exc))
+    
+   raise RunFunctionException(str(exc))
+
 run_function_exception.RunFunctionException
 
 500
-127.0.0.1 - - [19/Jun/2019:08:20:26 +0000] "GET /score HTTP/1.0" 500 4 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+
+127.0.0.1 - - [19/Jun/2019:08:20:26 +0000] "GET /score HTTP/1.0" 500 4 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) 
+
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+
 Validation Request Content-Type
+
 Received input: { "Id": 0, "Timestamp": "2018-04-04T22:42:59+00:00", "NumberOfPoints": 400, "MaxLoad": 19500, "MinLoad": 7500, "StrokeLength": 1200, "StrokePeriod": 150, "CardType": 0,"CardPoints": [{"Load": 11744,"Position": 145 }] }
+
 Headers passed in (total 11):
-	Host: localhost:5001
-	X-Real-Ip: 127.0.0.1
-	X-Forwarded-For: 127.0.0.1
-	X-Forwarded-Proto: http
-	Connection: close
-	Content-Length: 218
-	User-Agent: python-requests/2.21.0
-	Accept: */*
-	Accept-Encoding: gzip, deflate
-	Content-Type: application/json
-	X-Ms-Request-Id: c82bd0ef-e058-41fb-8386-c852008f8810
+ 
+ Host: localhost:5001
+ 
+ X-Real-Ip: 127.0.0.1
+ 
+ X-Forwarded-For: 127.0.0.1
+ 
+ X-Forwarded-Proto: http
+ 
+ Connection: close
+ 
+ Content-Length: 218
+ 
+ User-Agent: python-requests/2.21.0
+ 
+ Accept: */*
+ 
+ Accept-Encoding: gzip, deflate
+ 
+ Content-Type: application/json
+ 
+ X-Ms-Request-Id: c82bd0ef-e058-41fb-8386-c852008f8810
+
 Scoring Timer is set to 3600.0 seconds
+
 200
+
 127.0.0.1 - - [19/Jun/2019:08:26:52 +0000] "POST /score HTTP/1.0" 200 95 "-" "python-requests/2.21.0"
 Validation Request Content-Type
+
 Received input: { "Id": 0, "Timestamp": "2018-04-04T22:42:59+00:00", "NumberOfPoints": 400, "MaxLoad": 19500, "MinLoad": 7500, "StrokeLength": 1200, "StrokePeriod": 150, "CardType": 0,"CardPoints": [{"Load": 11744,"Position": 145 }] }
+
 Headers passed in (total 11):
-	Host: localhost:5001
-	X-Real-Ip: 127.0.0.1
-	X-Forwarded-For: 127.0.0.1
-	X-Forwarded-Proto: http
-	Connection: close
-	Content-Length: 218
-	User-Agent: python-requests/2.21.0
-	Accept: */*
-	Accept-Encoding: gzip, deflate
-	Content-Type: application/json
-	X-Ms-Request-Id: 436df8ad-e509-4529-867b-69677ee381b6
+ 
+ Host: localhost:5001
+ 
+ X-Real-Ip: 127.0.0.1
+ 
+ X-Forwarded-For: 127.0.0.1
+ 
+ X-Forwarded-Proto: http
+ 
+ Connection: close
+ 
+ Content-Length: 218
+ 
+ User-Agent: python-requests/2.21.0
+ 
+ Accept: */*
+ 
+ Accept-Encoding: gzip, deflate
+ 
+ Content-Type: application/json
+ 
+ X-Ms-Request-Id: 436df8ad-e509-4529-867b-69677ee381b6
+
 Scoring Timer is set to 3600.0 seconds
+
 200
+
 127.0.0.1 - - [19/Jun/2019:08:27:10 +0000] "POST /score HTTP/1.0" 200 95 "-" "python-requests/2.21.0"
 Validation Request Content-Type
+
 Received input: { "Id": 0, "Timestamp": "2018-04-04T22:42:59+00:00", "NumberOfPoints": 400, "MaxLoad": 19500, "MinLoad": 7500, "StrokeLength": 1200, "StrokePeriod": 150, "CardType": 0,"CardPoints": [{"Load": 11744,"Position": 145 }] }
+
 Headers passed in (total 11):
-	Host: localhost:5001
-	X-Real-Ip: 127.0.0.1
-	X-Forwarded-For: 127.0.0.1
-	X-Forwarded-Proto: http
-	Connection: close
-	Content-Length: 218
-	User-Agent: python-requests/2.21.0
-	Accept: */*
-	Accept-Encoding: gzip, deflate
-	Content-Type: application/json
-	X-Ms-Request-Id: b04d747f-b825-4fe5-8041-1104dd940767
+ Host: localhost:5001
+ X-Real-Ip: 127.0.0.1
+	
+ X-Forwarded-For: 127.0.0.1
+ 
+ X-Forwarded-Proto: http
+ 
+ Connection: close
+ 
+ Content-Length: 218
+ 
+ User-Agent: python-requests/2.21.0
+ 
+ Accept: */*
+ 
+ Accept-Encoding: gzip, deflate
+ 
+ Content-Type: application/json
+ 
+ X-Ms-Request-Id: b04d747f-b825-4fe5-8041-1104dd940767
+
 Scoring Timer is set to 3600.0 seconds
+
 200
+
 127.0.0.1 - - [19/Jun/2019:08:29:01 +0000] "POST /score HTTP/1.0" 200 95 "-" "python-requests/2.21.0"
 Validation Request Content-Type
+
 Received input: { "Id": 0, "Timestamp": "2018-04-04T22:42:59+00:00", "NumberOfPoints": 400, "MaxLoad": 19500, "MinLoad": 7500, "StrokeLength": 1200, "StrokePeriod": 150, "CardType": 0,"CardPoints": [{"Load": 11744,"Position": 145 }] }
+
 Headers passed in (total 11):
-	Host: localhost:5001
-	X-Real-Ip: 127.0.0.1
-	X-Forwarded-For: 127.0.0.1
-	X-Forwarded-Proto: http
-	Connection: close
-	Content-Length: 218
-	User-Agent: python-requests/2.21.0
-	Accept: */*
-	Accept-Encoding: gzip, deflate
-	Content-Type: application/json
-	X-Ms-Request-Id: a48a1f8d-81ef-40d4-9465-fab39d8fbe39
+ 
+ Host: localhost:5001
+ 
+ X-Real-Ip: 127.0.0.1
+ 
+ X-Forwarded-For: 127.0.0.1
+ 
+ X-Forwarded-Proto: http
+ 
+ Connection: close
+ 
+ Content-Length: 218
+ 
+ User-Agent: python-requests/2.21.0
+ 
+ Accept: */*
+ 
+ Accept-Encoding: gzip, deflate
+ 
+ Content-Type: application/json
+ 
+ X-Ms-Request-Id: a48a1f8d-81ef-40d4-9465-fab39d8fbe39
+
 Scoring Timer is set to 3600.0 seconds
+
 200
+
 127.0.0.1 - - [19/Jun/2019:08:29:06 +0000] "POST /score HTTP/1.0" 200 95 "-" "python-requests/2.21.0"
 
 #### 6.12.1 Check the image
