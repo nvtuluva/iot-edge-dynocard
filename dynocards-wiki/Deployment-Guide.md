@@ -1,44 +1,51 @@
 ![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/oil%26gas-deployment.png)
 **Table of Contents** 
 
-- [1 Deployment Guide](#1-deployment-guide)
-- [2 What are Paired Regions?](#2-what-are-paired-regions?)
-- [3 ARM Template Input Parameters](#3-arm-template-input-parameters)
-- [4 Getting Started](#4-getting-started)
+- [1.0 Deployment Guide](#10-deployment-guide)
+- [2.0 What are Paired Regions?](#20-what-are-paired-regions?)
+- [3.0 ARM Template Input Parameters](#30-arm-template-input-parameters)
+- [4.0 Getting Started](#40-getting-started)
     - [4.1 ARM Template Deployment Using Azure Portal](#41-arm-template-deployment-using-azure-portal)
         - [4.1.1 Inputs](#411-inputs)
         - [4.1.2 Outputs](#412-Outputs)
     - [4.2 ARM Template Deployment Using Azure CLI](#42-arm-template-deployment-using-azure-cli)
-- [5 Post Deployment Steps](#5-post-deployment-steps)
+- [5.0 Post Deployment Steps](#50-post-deployment-steps)
     - [5.1 Verify Containers in Edge VM and Azure Portal](#51-verify-containers-in-edge-vm-and-azure-portal)
     - [5.2 Update IoT Hub Device Primary Key in Web API Application Settings](#52-update-iot-hub-device-primary-key-in-Web-api-application-settings)
-    - [5.3 Perform Device Twin Operation on Edge VM [Optional]](#51-perform-device-twin-operation-on-edge-vm-[optional])
-- [6 Machine Learning Configuration](#5-machine-learning-configuration)
-    - [6.1 Add Current user to Docker-users group](#61-add-current-user-to-docker-users-group)
-    - [6.2 Install ML Workbench](#61-install-ml-workbench)
-    - [6.3 Login to the Azure portal](#63-login-to-the-azure-portal)
-    - [6.4 List Environment Components](#64-list-environment-components)
-    - [6.5 Create ML Project](#65-create-ml-project)
-    - [6.6 Download Git Repository](#66-download-git-repository)
-    - [6.7 Submit experiment train4dc.py as local target](#67-submit-experiment-train4dc.py-as-local-target)
-    - [6.8 Install azureml.datacollector](#68-install-azureml.datacollector)
-    - [6.9 Submit experiment score4dc.py with local target](#69-submit-experiment-score4dc.py-with-local-target)
-    - [6.10 Set Model Management account](#610-set-model-management-account)
-    - [6.11 Deployment Configuration](#611-deployment-configuration)
-    - [6.12 Registering providers](#612-registering-providers)
-    - [6.13 Run experiment as Docker target](#613-run-experiment-as-docker-target)
-    - [6.14 Web Service Deployment](#614-web-service-deployment)
-    - [6.15 Testing Web Service](#615-testing-web-service)
+    - [5.3 Perform Device Twin Operation on Edge VM [Optional]](#53-perform-device-twin-operation-on-edge-vm-[optional])
+- [6.0 Machine Learning Configuration](#60-machine-learning-configuration)
+    - [6.1 Login to Data Science Virtual Machine](#61-login-to-data-science-virtual-machine
+    - [6.2 Clone iot-edge-dynocard git repository](#62-clone-iot-edge-dynocard-git-repository)
+    - [6.3 Update the config.json file](#63-update-the-config.json-file)
+    - [6.4 Install the Python Packages](#64-install-the-python-packages)
+    - [6.5 Launch Jupyter server](#65-launch-jupyter-server)
+    - [6.6 Create train4dc Notebook](#66-create-train4dc-notebook)
+    - [6.7 Run train4dc experiment](#67-run-train4dc-experiment)
+    	- [6.7.1 Check the model.pkl file](#671-check-the-model.pkl-file)
+	- [6.7.2 Check train4dc experiment in ML service workspace](#672-check-train4dc-experiment-in-ml-service-workspace)
+	- [6.7.3 Check the model in ML service workspace](#673-check-the-model-in-ml-service-workspace)
+    - [6.8 Create Score4dc notebook](#68-create-score4dc-notebook)
+    - [6.9 Run score4dc experiment](#69-run-score4dc-experiment)
+    	- [6.9.1 Check the service_schema.json file](#691-check-the-service_schema.json-file)
+    	- [6.9.2 Check score4dc experiment in ML service workspace](#692-check-score4dc-experiment-in-ml-service-workspace)
+    - [6.10 Update myenv.yaml file](#610-update-myenv.yaml-file)
+    - [6.11 Create deployment Notebook](#611-create-deployment-notebook)
+    - [6.12 Run Deployment Notebook](#612-run-deployment-notebook)
+    	- [6.12.1 Check the image](#6121-check-the-image)
+    	- [6.12.2 Check the Deployment](#6122-check-the-deployment)
 	
 	
 
-## 1. Deployment Guide
+## 1.0 Deployment Guide
 This Document explains about how to deploy Oil & Gas solution using ARM Template. In this Document explained about two ways of deploying solution.
+
 ##### -Using Azure portal
+
 ##### * Using Azure CLI
+
 This document explains about input parameters, output parameters and points to be noted while deploying ARM Template.
 
-## 2.  What are paired regions?
+## 2.0 What are paired regions?
 Azure operates in multiple geographies around the world. An Azure geography is a defined area of the world that contains at least one Azure Region. An Azure region is an area within a geography, containing one or more datacenters.
 Each Azure region is paired with another region within the same geography, together making a regional pair. The exception is Brazil South, which is paired with a region outside its geography.
 
@@ -67,7 +74,7 @@ IoT Hub Manual Failover Support Geo-Paired Regions:
 
 
 
-## 3 ARM Template Input Parameters
+## 3.0 ARM Template Input Parameters
 
 In the parameters section of the template, specify which values you can input when deploying the resources. These parameter values enable you to customize the deployment by providing values that are tailored for an environment (such as dev, test, and production). You are limited to 255 parameters in a template. You can reduce the number of parameters by using objects that contain multiple properties.
 
@@ -98,7 +105,7 @@ In the parameters section of the template, specify which values you can input wh
 ### Note:   
 Allowed Values are updated based on the availability of azure resources based on Region w.e.f DT 18th Aug 2018. Microsoft may introduce availability of azure resources in future. More information can be found in https://azure.microsoft.com/en-in/status/ 
 
-## 4 Deployment Guide
+## 4.0 Deployment Guide
 
 Azure Resource Manager allows you to provision your applications using a declarative template. In a single template, you can deploy multiple services along with their dependencies. The template consists of JSON and expressions that you can use to construct values for your deployment. You use the same template to repeatedly deploy your application during every stage of the application lifecycle.
 Resource Manager provides a consistent management layer to perform tasks through Azure PowerShell, Azure CLI, Azure portal, REST API, and client SDKs.
@@ -303,9 +310,9 @@ Use the **az group deployment create** command to deploy the ARM template
  
 ![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/29.png)
 
-## 5. Post Deployment steps
+## 5.0 Post Deployment steps
 
-### 5.1. Verify Containers in EdgeVM and Azure Portal
+### 5.1 Verify Containers in EdgeVM and Azure Portal
 
 1. Go to **Resource Group** ->click on **iotEdge** VM.
 
@@ -353,7 +360,7 @@ Enter the Password as: **Password@1234**
 
 ![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/modules-running.png)
 
-### 5.2. Update IoT Hub Device Primary key in Web API Application Settings
+### 5.2 Update IoT Hub Device Primary key in Web API Application Settings
 
 1. Go to **Resource Group** -> Click on **iothub26hs3**
 
@@ -389,7 +396,7 @@ Value: **[Device connection string-primary key]**
 
 ![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/53.png)
 
-### 5.3. Perform Device Twin operation on Edge VM [Optional]
+### 5.3 Perform Device Twin operation on Edge VM [Optional]
 
 **Note**: This step is required only when user wants to run simulator on their own system. If Modbus VM is Deployed as part of the solution, then skip this step and continue with next step.
 
@@ -493,347 +500,395 @@ As per above diagram slave connection is 52.186.11.164 and it’s trying to conn
 
 Now slave connection IP address is updated with New IP Address.
 
-**6.  Machine Learning Configuration**
+## 6.0 Machine Learning Configuration
 
-Azure Machine Learning is an integrated, end-to-end data science and advanced analytics solution. It enables data scientists to prepare data, develop experiments and deploy models at cloud scale. The document goes over the following topics.
+### 6.1 Login to Data Science Virtual Machine
 
-    1 - AML Experimentation Account
-    2 - AML Model Management Account
-    3 - AML Workbench
-    4 - Configuring the various ML objects.
-    5 - Training and deploying a sample model.
+Go to the resource group and click on Data Science Virtual Machine. 
 
-**Experimentation service** allows data scientists to execute their experiments locally, in Docker containers, or in Spark clusters through simple configuration. It manages run history, provides version control, and enables sharing and collaboration.
-
-**Azure Machine Learning Workbench** is a front-end for a variety of tools and services, including the Azure Machine Learning Experimentation and Model Management services.
-
-Workbench is a relatively open toolkit. First, you can use almost any Python-based machine learning framework, such as Tensor flow or scikit-learn. Second, you can train and deploy your models either on-premises or on Azure. Workbench also includes a great data-preparation module. It has a drag-and-drop interface that makes it easy to use, but its features are surprisingly sophisticated.
-
-## 6.1. Add Current user to Docker-users group
-
-1. Go to **AzuremlVM** from the **Resource Group** and copy **Public IP Address** of the VM.
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d01.png)
  
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/154.png)
+Copy the public IP address.
 
-2. Open **Remote desktop connection** and place IP Address and click on **Connect.**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/155.png)
-
-3. Provide user name and password and click on OK.
-User Name   : adminuser
-Password    : Password@1234
-**Note:** Credentials might vary depends on deployment.
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/156.png)
-
-4. Open **PowerShell as Administrator** and execute below command to add current user to docker-users group.
-**Add-LocalGroupMember -Member $env:username -Name docker-users**
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/157.png) 
-
-5. Sign out from windows and sign in again.
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/158.png)
-
-6. Search for docker for windows in search menu and click on **“Docker for Windows.”**
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d02.png)
  
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/159.png)
+Open Remote Desktop Connection and paste the public IP address
 
-7. When it prompted to enable **Hyper-V and Containers feature**, click **ok**.
+Click **on Connect**
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/160.png)
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d03.png)
 
-8. This will restart Windows System. Login again to VM using the same credentials as above.
+Provide user name and password and click on OK. User Name : **adminuser** Password : **Password@1234**
 
-9. When Docker is running, a pop will be opened in task bar which states docker is running.
+**Note**:Credentials might vary depends on deployment.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d04.png)
+
+Click on **OK**.
+
+You will be log in to Data Science Virtual Machine.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d05.png)
  
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/161.png)
+### 6.2 Clone iot-edge-dynocard git repository
 
-**6.2. Install ML Workbench**
-1. Install ML work bench using the setup file from below path.
+Open command prompt in Data Science Virtual Machine
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/162.png) 
+Create a directory with a unique name.
 
-2. Double click on **amlWorkbenchSetup.msi** file.
-3. Click on **Continue**.
+**mkdir OilNGas**
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/163.png)
+navigate to the directory that you created
 
-4. Click on **Install**.
+**cd OilNGas**
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/164.png)
-
-5. It will take around 30mins to 45mins to install ML Workbench.
-6. Once installation completed successfully, click on Launch **Azure Machine Learning Workbench**.
-7. Click on **Sign in with Microsoft.** 
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/165.png)
-
-8. Provide azure portal login credentials. Once login is completed successfully. The below page will be displayed. 
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/166.png)
-
-9. Click on File > Open Command Prompt.
-
-## 6.3. Login to the Azure portal
-
-10. Login to the portal using below command.
-**az login -t <tenant ID>**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/167.png)
-
-11. Open edge browser and go to the page **https://microsoft.com/devicelogin** and provide code and click on Continue.
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d05.png)
  
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/168.png)
+Clone the iot-edge-dynocard git code using the below command
 
-12. Provide azure portal login credentials, once authentication is successful, go back to command prompt.
-13. List available azure subscriptions using below command.
+**git clone https://github.com/nvtuluva/iot-edge-dynocard.git**
 
-**az account list -o table**
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d06.png)
  
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/169.png)
+Open File Explorer and Navigate to C:\OilNGas directory to see the downloaded git code.
 
-14. Set current subscription as default using below command.
-
-**az account set -s <enter your sub id here>**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/170.png)
-
-15. Verify default subscription using below command
-
-**az account show**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/171.png)
-
-## 6.4. List Environment Components
-
-16. Location of anaconda env
-
-**conda env list**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/172.png)
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d07.png) 
  
-17. List python packages
+Navigate to the 
 
-**pip freeze**
+C:\OilNGas\iot-edge-dynocard\code\dynocard_alert\modules\edge_ml
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/173.png)
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d08.png)
 
-18. Versions of cli components
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d09.png)
 
-**az -v**
+## 6.3 Update the config.json file
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/174.png) 
+**subscription_id :** subscription id in which Machine Learning Service Work space is deployed
 
-19. All cli cmd for machine learning
+**resource_group :** Resource group name where Machine Learning Service Work space is deployed
 
-**az ml -h**
+**work space_name :** Name of the Machine Learning service Work space
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/175.png) 
+To get the name of the ML Service Work space, Go to Resource group and click on Machine Learning Service workspace. 
 
-## 6.5. Create ML Project
-
-1. Create ML Project using below command.
-
-**az ml project create --name mlproject --workspace mlworkspacerk23l --account oilgasexpaccrk23l --resource-group oilandgas-coresolution-267 --path c:\mlproject**
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d010.png)
  
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/176.png)
+Copy the name of ML Service workspace name, Resource group name and subscription ID.
+ 
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d011.png)
 
-2. Once project is created, refresh home page in GUI, where we can see project name under workspace. 
+Go back to Data science VM and update the config.json file.
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/177.png)
+{
+    **"subscription_id": "xxxxxxxxxxxxxxxxxxxxx",
+    "resource_group": " AS-OilNGas0623",
+    "workspace_name": " mlworkspace43ysm"**
+}
 
-## 6.6. Download Git Repository
+Save the config.json file
 
-1. Download repository from below URL and extract to specific path.
+Open command prompt and change the directory to edge_ml
 
-**https://github.com/BlueMetal/iot-edge-dynocard**
+Cd C:\OilNGas\iot-edge-dynocard\code\dynocard_alert\modules\edge_ml
 
-2. Click on **“Download Zip”**
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d012.png)
+ 
+### 6.4 Install the Python Packages 
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/178.png)
+Activate the conda 
 
-3. Extract the zip downloaded project file into ml project sub directory. 
+**conda activate AzureML**
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/179.png) 
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d013.png)
+ 
+Install Azure ML SDK.
 
-4. Change directory
+**pip install azureml-sdk**
 
-**cd C:\mlproject\iot-edge-dynocard-master\code\containers\edge_ml** 
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d014.png)
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/180.png)
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d015.png)
 
-## 6.7. Submit experiment train4dc.py as local target
+Update azureml-sdk
 
-5. Run experiment locally using below command
+**pip install --upgrade azureml-sdk**
 
-**az ml experiment submit -c local train4dc.py**
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d016.png)
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/181.png)
-
-6. Now go back to GUI. Click on **run history** on left hand pane and it will page as below.
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/182.png)
-
-7. Click on **Run** and a page will be opened as below. 
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/183.png)
-
-8. Select **model4dc.pkl** and click on **Download.** 
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/184.png)
-
-9. Choose path to save the file. [This path will be working directory of ML Workspace, Ex: C:\iot-edge-dynocard-master\code\containers\edge_ml]. click on **save**.
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/185.png) 
-
-10. Click on **Yes** when it’s prompted for Confirm Save As warning.
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/186.png)
-
-## 6.8. Install azureml.datacollector
-
-11. Install azureml.datacollector using below command.
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d017.png)
+ 
+Install azureml.datacollector module
 
 **pip install azureml.datacollector**
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/187.png)
-
-## 6.9. Submit experiment score4dc.py with local target
-
-12. Submit experiment with docker local as target using below command.
-
-**az ml experiment submit -c local score4dc.py**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/188.png)
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d018.png)
  
-13. Go to GUI and check **Run History** page.
+Install azureml-webservice-schema
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/189.png)
+**pip install azureml-webservice-schema**
 
-14. Click on **recently completed run job**. A page will be opened as below.
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d019.png)
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/190.png)
-
-15. Select **Service_schema.json** file and click on **Download**.
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/191.png) 
-
-16. Download the file to current working directory as earlier step.
-
-## 6.10.set Model Management account
-
-Azure machine learning uses two accounts. The first account keeps track of the experiments and the second account keeps track of the models. The Azure CLI commands below can be used to validate your accounts and set your model management account to the project directory.
-
-**Syntax:  az ml account modelmanagement set -n <modelmanagementaccountname> -g <resourcegroupname>**
-
-**Ex: az ml account modelmanagement set -n mmact4pumps -g rg4pumps**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/192.png)
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d020.png)
  
-## 6.11.   Deployment Configuration
+Install inference_schema
 
-17. Create dev environment using below command.
+**pip install inference_schema**
 
-**Syntax: az ml env setup -l eastus2 -n <Uniquename> -g <resourcegroup name> --debug --verbose**
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d021.png)
 
-**az ml env setup -l eastus2 -n mldevcofigex -g mldevconfigrg --debug --verbose**
+### 6.5 Launch Jupyter server
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/193.png)
+Launch Jupyter Notebook server with the following command.
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/194.png)
+jupyter notebook
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/195.png)
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d022.png)
+ 
+Once you execute the above command, a prompt will be opened for selecting browser.
+
+Select a browser and click on OK.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d023.png)
+ 
+All the files in the current directory will be opened in Jupyter server like below.
+ 
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d024.png)
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d025.png)
+ 
+### 6.6 Create train4dc Notebook
+
+Click on **New**
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d026.png)
+
+Select **Python3** from the drop-down list
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d027.png)
+ 
+A new tab will be opened with the name **Untitled**.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d028.png)
+
+To change the name of the file, click on **File** and select **Rename**
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d029.png)
+ 
+Enter **train4dc** in the text box and click on **Rename**.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d030.png)
+ 
+Now the Notebook name is changed to train4dc.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d031.png)
+ 
+First, let's import the azureml.core package. This contains core packages, modules and classes for Azure Machine Learning. 
+
+Copy the below code and paste it in the first cell of the Notebook.
+
+
+import azureml.core
+from azureml.core import Workspace, Experiment, Run
+# check core SDK version number
+print("Azure ML SDK Version: ", azureml.core.VERSION)
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d032.png)
+ 
+To insert a new cell, click on Insert and select Insert Cell Below 
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d033.png)
+
+A new cell will be created.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d034.png)
+ 
+Paste the below code to load the workspace.
+
+ws = Workspace.from_config()
+print(ws.name, ws.location, ws.resource_group, ws.location, sep = '\t')
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d035.png)
+
+Insert a new cell and paste the below code to create the experiment
+
+**experiment = Experiment(workspace = ws, name = "train4dc")**
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d036.png)
+ 
+Create a new cell and paste the below code.
+
+run = experiment.start_logging()
+
+# import libaries
+from sklearn.svm import SVC
+import pickle
+
+# features - height, width, and shoe size
+X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40], [190, 90, 47], [175, 64, 39],
+     [177, 70, 40], [159, 55, 37], [171, 75, 42], [181, 85, 43]]
+
+# category - male | female
+Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female', 'female', 'male', 'male']
+
+# classify the data
+clf = SVC()
+clf = clf.fit(X, Y)
+
+# predict a value & show accuracy
+X_old = [[190, 70, 43]]
+print('Old Sample:', X_old)
+print('Predicted value:', clf.predict(X_old))
+print('Accuracy', clf.score(X,Y))
+
+# create the outputs folder
+# os.makedirs('./outputs', exist_ok=True)
+
+# export model
+print('Export the model to model.pkl')
+f = open('./model.pkl', 'wb')
+pickle.dump(clf, f)
+f.close()
+
+# import model
+print('')
+print('Import the model from model.pkl')
+f2 = open('./model.pkl', 'rb')
+clf2 = pickle.load(f2)
+
+# predict new value
+X_new = [[154, 54, 35]]
+print('New Sample:', X_new)
+print('Predicted class:', clf2.predict(X_new))
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d037.png) 
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d038.png)
+ 
+Insert three more new cells and paste **run, experiment** and **run.complete()** as shown below
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d039.png)
+ 
+Click on new cell and paste the below code to register the model.
+
+**from azureml.core.model import Model
+model = Model.register(workspace = ws,
+                       model_path ="model.pkl",
+                       model_name = "anomaly_detect",
+                       description = "Dynocard anomaly detection")**
+		 
+ 
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d040.png)
+
+Save the file.
+
+## 6.7 Run train4dc experiment
+
+To run a cell, select it and click on **Run**
+
+Select the first cell and click on run to import the azureml.core packages and to print azureml sdk version.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d041.png)
+ 
+You will get the below output under the cell.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d042.png)
+
+Select the next cell and click on run
+
+When you run **ws = Workspace.from_config** below, you will be prompted to log in to your Azure subscription that is configured in the config.json file. Once you are connected to your workspace in Azure cloud, you can start experimenting.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d043.png)
+
+You will get the below output and a prompt will be opened in the browser.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d044.png)
+ 
+Login with your Azure Credentials.
+ 
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d045.png)
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d046.png)
+ 
+Go back to the notebook.
+
+Once your authentication is successful, **Interactive authentication successfully completed** message will be displayed.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d047.png)
+ 
+Run the next cell to create the experiment. 
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d048.png)
+ 
+Run the next cell to run the train4dc experiment.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d049.png)
+
+You will get the below output
+
+*Old Sample: [[190, 70, 43]]
+Predicted value: ['male']
+Accuracy 1.0
+Export the model to model.pkl*
+
+*Import the model from model.pkl
+New Sample: [[154, 54, 35]]
+Predicted class: ['female']*
+
+Run the next cell **run** to view a detail report of the run history on Azure Portal.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d050.png)
+ 
+Run the next cell **experiment** to view all runs under the experiment section.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d051.png)
+
+Run the next cell **run.complete()** to complete the experiment.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d052.png)
+ 
+Run the next cell to register the model.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d053.png)
+ 
+You will get the below output
+
+Registering model anomaly_detect
+
+#### 6.7.1 Check the model.pkl file
+
+Go to **Home** tab
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d054.png)
+ 
+Here you can find the generated model.pkl file.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d055.png)
+
+##### 6.7.2 Check train4dc experiment in ML service workspace
+
+To see the created experiment go to Resource group and click on ML service Workspace
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d056.png)
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d057.png)
+ 
+Navigate to the Experiments blade to see the created experiment.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d058.png)
+ 
+Click on train4dc experiment to see the all runs
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d059.png)
+ 
+Here you can see the run status as completed.
+
+![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/d060.png)
+ 
+#### 6.7.3 Check the model in ML service workspace
+
+Navigate to the Models blade to see the registered model.
  
  
-18. We can verify the deployment progress using below command. Wait until provisioning state shows as succeeded.
 
-**az ml env show -g mldevconfigrg -n mldevcofigex**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/196.png)
-
-19. Set as default using below command.
-
-**az ml env set -g mldevconfigrg -n mldevcofigex**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/197.png)
- 
-20. Show default environment using below command.
-
-**az ml env show**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/198.png)
-
-21. The above deployment deploys below resources in azure. We can verify deployed resources in azure portal.
-* 1- Azure Container Registry
-* 2 – Storage Accounts
-* 1- Application Insights
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/199.png)
-
-## 6.12.Registering providers
-
-22. Register providers in azure portal using below commands.
-
-**az provider register -n Microsoft.MachineLearningCompute**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/200.png)
-
-**az provider register -n Microsoft.ContainerRegistry**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/201.png)
-
-**az provider register -n Microsoft.ContainerService**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/202.png)
-
-## 6.13.   Run experiment as Docker target
-
-23. Run below command to submit experiment with docker target
-
-**az ml experiment submit -c docker train4dc.py**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/203.png)
-
-When the process is running open new command prompt from ML GUI > File > Open Command Prompt. This process will take around 15mins of time.
-
-24. **Run docker ps –a** to verify running docker containers.
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/204.png)
-
-25. Once process completed, the output will be as below.
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/205.png)
-
-26. Go to GUI run history and check recently create Run Number.
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/206.png)
-
-## 6.14. Web Service Deployment
-
-27. Deploy web service using below command.
-
-**az ml service create realtime -m model4dc.pkl -f score4dc.py -r python –n websvc4dc**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/207.png)
-
-28. Verify docker container using below command.
-
-**docker ps -a**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/208.png)
-
-## 6.15.   Testing Web Service
-
-29. Run below command to test web service using sample data.
-
-**az ml service run realtime -i websvc4dc -d "{ \"Id\": 0, \"Timestamp\": \"2018-04-04T22:42:59+00:00\", \"NumberOfPoints\": 400, \"MaxLoad\": 19500, \"MinLoad\": 7500, \"StrokeLength\": 1200, \"StrokePeriod\": 150, \"CardType\": 0,\"CardPoints\": [{\"Load\": 11744,\"Position\": 145 }] }"**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/209.png)
-
-30. Check the logs by running the below command
-
-**Syntax:  az ml service logs realtime –i websvc4dc**
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/210.png)
-
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/211.png)
