@@ -85,9 +85,9 @@ In the parameters section of the template, specify which values you can input wh
 | -------------       | -------------       | -----------------     | ------------         |
 | **Solution Type**   | Choose the solution deployment type from the drop down, for more information about the solution deployment type navigate to https://github.com/nvtuluva/iot-edge-dynocard/blob/master/dynocards-wiki/Deployment-Guide.md in wiki      | Basic, Standard, Premium | Basic|
 | **Edge VM + Simulator VM**   | Choose Yes/No to add Modbus VM as part of Solution deployment, for more information about the Modbus VM navigate to https://github.com/nvtuluva/iot-edge-dynocard/blob/master/dynocards-wiki/Deployment-Guide.md in wiki   | Yes, No    | No |
-| **mlVM**   | Choose Yes/No to add ML VM as part of Solution deployment, for more information about the ML VM navigate to https://github.com/nvtuluva/iot-edge-dynocard/blob/master/dynocards-wiki/Deployment-Guide.md in wiki    | Yes, No   | No |
+| **Data Science VM**   | Choose Yes/No to add Data Science VM as part of Solution deployment    | Yes, No   | No |
+| **Data Science VM size**   | Choose size for Data Science VM   | Standard_B2s,Standard_B2ms,Standard_B4ms,Standard_B8ms,Standard_DS1,Standard_DS2,Standard_DS3,Standard_DS4,Standard_DS11,Standard_DS12,Standard_DS13,Standard_DS14,Standard_DS1_v2,Standard_DS2_v2,Standard_DS3_v2  | Standard_B2s |
 | **Data Lake Location**   | Choose location for Data Lake Store, for more information about the Data Lake Store navigate to https://github.com/nvtuluva/iot-edge-dynocard/blob/master/dynocards-wiki/Deployment-Guide.md in wiki   | Eastus2,Centralus, Northeurope, westeurope  | Eastus2 |
-| **Machine learning Location**  | Choose location for machine learning account, for more information about the machine learning location navigate to https://github.com/nvtuluva/iot-edge-dynocard/blob/master/dynocards-wiki/Deployment-Guide.md in wiki   | Eastus2, Australieneast, Southeastasia, Westcentralus, Westeurope | eastus2 |
 | **Geo Paired Primary Region**  | Choose geo-paired region,if you have selected standard (or) premium option in the solution type inputparameter, for more information about the geo-paired-region navigate to https://github.com/nvtuluva/iot-edge-dynocard/blob/master/dynocards-wiki/Deployment-Guide.md in wiki  | EastUS2,CentralUS,WestUS2,WestCentralUS,CanadaCentral,CanadaEast,         AustraliaEast,AustraliaSouthEast,CentralIndia,SouthIndia,EastAsia,               SouthEastAsia,JapanWest,JapanEast,KoreaCentral,KoreaSouth,UKSouth,               UKWest  | eastus2|
 | **oms-region**    | Choose location for OMS Log Analytics, for more information about the oms-region navigate to https://github.com/nvtuluva/iot-edge-dynocard/blob/master/dynocards-wiki/Deployment-Guide.md in wiki   | australiasoutheast, canadacentral, centralindia, eastus, japaneast, southeastasia, uksouth, westeurope    | EastUs |
 | **appInsightsLocation**   | specify the region for application insights, for more information about the appInsightsLocation navigate to https://github.com/nvtuluva/iot-edge-dynocard/blob/master/dynocards-wiki/Deployment-Guide.md in wiki    | eastus, northeurope,  southcentralus, southeastasia, westeurope, westus2 | westus2 |
@@ -159,7 +159,7 @@ To deploy a template for Azure Resource Manager, follow the below steps.
 
 6.  The **Custom deployment** page is displayed as shown in the following.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/11.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg01.PNG)
 
 ### 4.1.1 Inputs
 These parameter values enable you to customize the deployment by providing values. There parameters allow to choose the solution type, region and credentials to authenticate SQL Database and Virtual Machines.
@@ -168,19 +168,19 @@ These parameter values enable you to customize the deployment by providing value
 
 8.  If you choose **No** then the **Edge VM + Simulator VM** vm  will be **not deployed** with in the solution, If you choose No, then the Edge VM and Simulator VM will be not deployed with in the solution, we have to manually deploy IoT Edge modules in Edge VM for more information refer the section 5.3 Perform Device Twin Operation on Edge VM.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/12.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg02.PNG)
 
 9.  If you choose **yes** for **ML VM** then Pre-installed **docker** will be **deployed** with in the solution.
 
 10. If you choose **No** for **ML VM** then Pre-installed **docker** will **not be deployed** with in the solution.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/13.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg03.PNG)
 
 **Parameters for Basic Solution**
 
 11. Deploy the template by providing the parameters in custom deployment settings as shown in the following figure.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters-basic11.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg04.PNG)
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters12.png)
 
@@ -188,7 +188,7 @@ These parameter values enable you to customize the deployment by providing value
 
 12. If you want to deploy the core with monitoring you must enter the below parameters
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters-standard11.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg05.PNG)
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters12.png)
 
@@ -196,7 +196,7 @@ These parameter values enable you to customize the deployment by providing value
 
 13. If you want to deploy the core with Hardening and Monitoring you must enter the below parameters.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters-premium11.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg06.PNG.png)
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters12.png)
 
