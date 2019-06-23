@@ -1,8 +1,9 @@
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/oil%26gas-deployment.png)
+
 **Table of Contents** 
 
 - [1.0 Deployment Guide](#10-deployment-guide)
-- [2.0 What are Paired Regions?](#20-what-are-paired-regions?)
+- [2.0 What are Paired Regions](#20-what-are-paired-regions)
 - [3.0 ARM Template Input Parameters](#30-arm-template-input-parameters)
 - [4.0 Getting Started](#40-getting-started)
     - [4.1 ARM Template Deployment Using Azure Portal](#41-arm-template-deployment-using-azure-portal)
@@ -14,7 +15,7 @@
     - [5.2 Update IoT Hub Device Primary Key in Web API Application Settings](#52-update-iot-hub-device-primary-key-in-Web-api-application-settings)
     - [5.3 Perform Device Twin Operation on Edge VM [Optional]](#53-perform-device-twin-operation-on-edge-vm-[optional])
 - [6.0 Machine Learning Configuration](#60-machine-learning-configuration)
-    - [6.1 Login to Data Science Virtual Machine](#61-login-to-data-science-virtual-machine
+    - [6.1 Login to Data Science Virtual Machine](#61-login-to-data-science-virtual-machine)
     - [6.2 Clone iot-edge-dynocard git repository](#62-clone-iot-edge-dynocard-git-repository)
     - [6.3 Update the config.json file](#63-update-the-config.json-file)
     - [6.4 Install the Python Packages](#64-install-the-python-packages)
@@ -37,15 +38,17 @@
 	
 
 ## 1.0 Deployment Guide
+
 This Document explains about how to deploy Oil & Gas solution using ARM Template. In this Document explained about two ways of deploying solution.
 
-##### -Using Azure portal
+##### - Using Azure portal
 
-##### * Using Azure CLI
+##### - Using Azure CLI
 
 This document explains about input parameters, output parameters and points to be noted while deploying ARM Template.
 
-## 2.0 What are paired regions?
+## 2.0 What are paired regions
+
 Azure operates in multiple geographies around the world. An Azure geography is a defined area of the world that contains at least one Azure Region. An Azure region is an area within a geography, containing one or more datacenters.
 Each Azure region is paired with another region within the same geography, together making a regional pair. The exception is Brazil South, which is paired with a region outside its geography.
 
@@ -102,7 +105,8 @@ In the parameters section of the template, specify which values you can input wh
 | **Plcsimulatorv2** | Please provide Plcsimulatorv2 exe file which is under /builds folder  by storing it in a public storage | https://projectiot.blob.core.windows.net/oilgas-iot/ModbusSimulator/ModRSsim2.exe    | https://projectiot.blob.core.windows.net/oilgas-iot/ModbusSimulator/ModRSsim2.exe  |
 | **Device Name** | Please provide the IoT Edge device name | your device name    | your device name  |
 
-### Note:   
+### Note:  
+
 Allowed Values are updated based on the availability of azure resources based on Region w.e.f DT 18th Aug 2018. Microsoft may introduce availability of azure resources in future. More information can be found in https://azure.microsoft.com/en-in/status/ 
 
 ## 4.0 Deployment Guide
@@ -155,7 +159,7 @@ To deploy a template for Azure Resource Manager, follow the below steps.
 
 6.  The **Custom deployment** page is displayed as shown in the following.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg01.PNG)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/11.png)
 
 ### 4.1.1 Inputs
 These parameter values enable you to customize the deployment by providing values. There parameters allow to choose the solution type, region and credentials to authenticate SQL Database and Virtual Machines.
@@ -164,33 +168,36 @@ These parameter values enable you to customize the deployment by providing value
 
 8.  If you choose **No** then the **Edge VM + Simulator VM** vm  will be **not deployed** with in the solution, If you choose No, then the Edge VM and Simulator VM will be not deployed with in the solution, we have to manually deploy IoT Edge modules in Edge VM for more information refer the section 5.3 Perform Device Twin Operation on Edge VM.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg02.PNG)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/12.png)
 
 9.  If you choose **yes** for **ML VM** then Pre-installed **docker** will be **deployed** with in the solution.
 
 10. If you choose **No** for **ML VM** then Pre-installed **docker** will **not be deployed** with in the solution.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg03.PNG)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/13.png)
 
 **Parameters for Basic Solution**
 
 11. Deploy the template by providing the parameters in custom deployment settings as shown in the following figure.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg04.PNG)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters-basic11.png)
+
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters12.png)
 
 **Parameters for Standard Solution**
 
 12. If you want to deploy the core with monitoring you must enter the below parameters
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg05.PNG)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters-standard11.png)
+
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters12.png)
 
 **Parameters for Premium Solution**
 
 13. If you want to deploy the core with Hardening and Monitoring you must enter the below parameters.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg06.PNG)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters-premium11.png)
+
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters12.png)
 
 14. Once all the parameters are entered, select the **terms and conditions** check box and click **Purchase**.
@@ -200,11 +207,17 @@ These parameter values enable you to customize the deployment by providing value
 16. When you choose Costing model as **Standard** and the **Modbus VM** and **ML VM** as **Yes**, then the below components will be installed.
 
 * 3-Virtual machines (2 windows & 1 Linux)
+
 Windows VMS
+
 **Dyno card VM** which install pre-installed software's for dyno card VM.
+
 **ML VM** which install pre-installed docker.
+
 Linux VM
+
 **Edge VM** is used to create IoT Edge device and installs modules in IoT Edge device
+
 * 2-Web App
 * 1-Application Insights
 * 1-Data Lake Storage
@@ -220,12 +233,17 @@ Linux VM
 17. Once the solution is deployed successfully navigate to the resource group, select the created **resource group** to view the list of resources that are created in the Resource Group as shown in the following figure.
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/17.png)
+
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/18.png)
+
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/19.png)
+
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/20.png)
 
 ### 4.1.2 Outputs
+
 The Outputs section consists of the values that are returned from deployment. The output values can be used for further steps in Solution Configuration
+
 1. Go to **Resource group** -> click **deployments** -> select **Microsoft Template**.
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/21.png)
@@ -239,14 +257,21 @@ The Outputs section consists of the values that are returned from deployment. Th
 Azure CLI is used to deploy your resources to Azure. The Resource Manager template you deploy, can either be a local file on your machine, or an external file that is in a repository like GitHub.  
 Azure Cloud Shell is an interactive, browser-accessible shell for managing Azure resources. Cloud Shell enables access to a browser-based command-line experience built with Azure management tasks in mind. 
 Deployment can proceed within the Azure Portal via Azure Cloud Shell. 
+
 Customize main-template.parameters.json file 
 
 1. Log in to **Azure portal.** 
+
 2. Open the prompt. 
+
 3. Select **Bash (Linux)** environment as shown in the following figure. 
+
 4. Select your preferred **Subscription** from the dropdown list.  
+
 5. Click **Create Storage** button as shown in the following figure. 
+
 6. Copy **main-template.json** and **main-template.parameters.json** to your Cloud Shell before updating the parameters. 
+
 7. Create **main-template.json** using the following command. 
 
 **vim main-template.json**
@@ -258,28 +283,45 @@ Customize main-template.parameters.json file
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/24.png) 
 
 9. Paste your **main-template.parameters.json** in editor. 
+
 10. Update the following parameters in main-template.json file 
+
 * Solution Type 
+
 *   Edge VM + Simulator VM
+
 *   MLVM
+
 *   dataLakelocation
+
 *   machineLearningLocation
+
 *   geo-Paired-Primary-region
+
 *   oms-region
+
 *   appInsightsLocation
+
 *   sqlAdministratorLogin
+
 *   sqlAdministratorLoginPassword
+
 *   azureLogin
+
 *   tenantId
+
 *   vmsUsername
+
 *   vmsPassword
  
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/25.png)
 
 11. Create Resource Group for oilandgas Solution 
+
 12. Use the **az group create** command to create a **Resource Group** in your region.
  
 **Description:** To create a resource group, use az group create command, 
+
 It uses the name parameter to specify the name for resource group (-n) and location parameter to specify the location (-l). 
 
 **Syntax: az group create -n <resource group name> -l <location>**.
@@ -291,6 +333,7 @@ It uses the name parameter to specify the name for resource group (-n) and locat
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/27.png)
 
 Execute the Template Deployment 
+
 Use the **az group deployment create** command to deploy the ARM template 
 
 **Description:** To deploy the ARM Template, you require two files: 
@@ -306,6 +349,7 @@ Use the **az group deployment create** command to deploy the ARM template
  ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/28.png)
 
 15. Deployment may take between 15-20 minutes depending on deployment size. 
+
 16. After successful deployment you can see the deployment outputs as follows.
  
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/29.png)
@@ -562,7 +606,7 @@ C:\OilNGas\iot-edge-dynocard\code\dynocard_alert\modules\edge_ml
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d010.png)
 
-## 6.3 Update the config.json file
+### 6.3 Update the config.json file
 
 **subscription_id :** subscription id in which Machine Learning Service Work space is deployed
 
@@ -580,11 +624,11 @@ Copy the name of ML Service workspace name, Resource group name and subscription
 
 Go back to Data science VM and update the config.json file.
 
-{
+**{
     **"subscription_id": "xxxxxxxxxxxxxxxxxxxxx",
     "resource_group": " AS-OilNGas0623",
     "workspace_name": " mlworkspace43ysm"**
-}
+}**
 
 Save the config.json file
 
@@ -690,8 +734,11 @@ Copy the below code and paste it in the first cell of the Notebook.
 
 
 import azureml.core
+
 from azureml.core import Workspace, Experiment, Run
-# check core SDK version number
+
+#check core SDK version number
+
 print("Azure ML SDK Version: ", azureml.core.VERSION)
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d033.png)
@@ -707,6 +754,7 @@ A new cell will be created.
 Paste the below code to load the workspace.
 
 ws = Workspace.from_config()
+
 print(ws.name, ws.location, ws.resource_group, ws.location, sep = '\t')
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d036.png)
@@ -721,43 +769,43 @@ Create a new cell and paste the below code.
 
 run = experiment.start_logging()
 
-# import libaries
+#import libaries
 from sklearn.svm import SVC
 import pickle
 
-# features - height, width, and shoe size
+#features - height, width, and shoe size
 X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40], [190, 90, 47], [175, 64, 39],
      [177, 70, 40], [159, 55, 37], [171, 75, 42], [181, 85, 43]]
 
-# category - male | female
+#category - male | female
 Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female', 'female', 'male', 'male']
 
-# classify the data
+#classify the data
 clf = SVC()
 clf = clf.fit(X, Y)
 
-# predict a value & show accuracy
+#predict a value & show accuracy
 X_old = [[190, 70, 43]]
 print('Old Sample:', X_old)
 print('Predicted value:', clf.predict(X_old))
 print('Accuracy', clf.score(X,Y))
 
-# create the outputs folder
-# os.makedirs('./outputs', exist_ok=True)
+#create the outputs folder
+#os.makedirs('./outputs', exist_ok=True)
 
-# export model
+#export model
 print('Export the model to model.pkl')
 f = open('./model.pkl', 'wb')
 pickle.dump(clf, f)
 f.close()
 
-# import model
+#import model
 print('')
 print('Import the model from model.pkl')
 f2 = open('./model.pkl', 'rb')
 clf2 = pickle.load(f2)
 
-# predict new value
+#predict new value
 X_new = [[154, 54, 35]]
 print('New Sample:', X_new)
 print('Predicted class:', clf2.predict(X_new))
@@ -783,7 +831,7 @@ model = Model.register(workspace = ws,
 
 Save the file.
 
-## 6.7 Run train4dc experiment
+### 6.7 Run train4dc experiment
 
 To run a cell, select it and click on **Run**
 
@@ -943,7 +991,7 @@ Insert a new cell and paste the below code to start the experiment logging.
 Insert a new cell to paste the below content. 
 
 *%%writefile score4dc.py
-# Common modules
+#Common modules
 import os
 from azureml.datacollector import ModelDataCollector
 from azureml.webservice_schema.data_types import DataTypes
@@ -997,7 +1045,7 @@ def run(input_str):
    #Fake a prediction
    prediction = write_msg(input['Id'], input['Timestamp']);
 
-   # Return json
+   #Return json
    return prediction
 
 
@@ -1127,7 +1175,7 @@ def main():
    generate_schema(run_func=run, inputs=input_str, filepath='./outputs/service_schema.json');
 
 
-# Call main
+#Call main
 if __name__ == "__main__":
     main()
     
@@ -1262,7 +1310,7 @@ Let's import the azureml.core package. This contains core packages, modules and 
 **import azureml.core
 from azureml.core import Workspace, Experiment, Run**
 
-**# check core SDK version number
+**#check core SDK version number
 print("Azure ML SDK Version: ", azureml.core.VERSION)**
 
 Paste the below code in the next cell to configure the workspace
@@ -1657,7 +1705,8 @@ Click on the image to see the details.
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d0109.png)
  
-6.12.2 Check the Deployment
+#### 6.12.2 Check the Deployment
+
 To check the deployment, go to Workspace and Navigate to deployment blade. 
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d0110.png)
