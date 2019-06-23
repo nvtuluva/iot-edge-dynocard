@@ -32,7 +32,7 @@
         - [2.5.9 Azure SQL Database](#257-azure-sql-database)
         - [2.5.10 Power BI](#2510-power-bi)
         - [2.5.11 Azure Container Registry](#2511-azure-container-registry)
-        - [2.5.12 Machine Learning Studio](#2512-machine-learning-studio)
+        - [2.5.12 Machine Learning Service workspace](#2512-machine-learning-studio)
         - [2.5.13 Application Insights](#2512-application-insights)
         - [2.5.14 OMS Log Analytics](#2514-oms-log-analytics)
         - [2.5.15 Function App](#2515-function-app)
@@ -525,15 +525,16 @@ Azure Container Registry allows you to store images for all types of container d
 
 In this implementation, Azure Container registry is used to store the images used as part of the IoT Edge modules and other aspects. Images like the websvc4dc image is stored in a private repository that will be pulled down to create containers. 
 
-#### 2.5.12 Machine Learning Studio 
+#### 2.5.12 Machine Learning Service workspace
 
 **Introduction:**
 
-Microsoft Azure Machine Learning Studio is a collaborative, drag-and-drop tool you can use to build, test, and deploy predictive analytics solutions on your data. Machine Learning Studio publishes models as web services that can easily be consumed by custom apps or BI tools such as Excel. Machine Learning Studio is where data science, predictive analytics, cloud resources, and your data meet.
+Azure Machine Learning service is a cloud service that you use to train, deploy, automate, and manage machine learning models.
+The workspace is the top-level resource for Azure Machine Learning service, providing a centralized place to work with all the artifacts you create when you use Azure Machine Learning service.The workspace keeps a history of all training runs, metrics and a snapshot of your scripts.
 
 **Implementation:**
 
-Machine learning studio is used to create Machine Learning experiment accounts, model creation and management account and the workspace.
+Machine learning service workspace is used to create experiments, register model, deploy image and web service.
 
 #### 2.5.13 Application Insights 
 
@@ -613,12 +614,12 @@ Prices are calculated by using the US East Location and Pricing Model is set to 
 | **Stream Analytics**       | Standard Streaming Unit, 1 Units * US$ 80.30                          | PAYG                          | $80.30
 | **Azure Container Registry**       | Basic Tier, 1 units * 30 day * US$ 0.167 per unit per day = US$ 5.00, total WebHooks = 2, AS= 10GiB      | PAYG                             | $5.00
 | **ML Services**   | Model Management (Preview), Dev/Test, Location East US2(Managed models=20,managed deployments=2, Available Cores=4)| PAYG  | $0.00
-| **Machine learning studio**   | Free    | PAYG   | $0.00
+| **Machine learning Service workspace**   | Free    | PAYG   | $0.00
 | **Application Insights**     | 6 GB, 5 GB of data is included for free. 1 GB * $2.99   | PAYG                             | $2.99
 | **Log Analytics**     | 6 GB, 5 GB of data is included for free. 1 GB * $2.30   | PAYG                             | $2.30
 | **Virtual machine (edgevm)**(Optional - Depends on Customer Choice)   | Standard, A2:2 core(s), 3.5 GB memory, 135GB Temporary storage, East US, Linux VM   | PAYG   | $87.60
 | **Virtual network(Optional)**     | 5GB Data transfer, Outbound data transfer 1*US$ 0.0100 per GB, Inbound data transfer 1*US$0.0100 per GB, East US | PAYG                             | $0.10
-| **Virtual machine (MLVM)(Optional)**     | Standard, D2 v3:2 vCPU(s), 8GB RAM, 50GB Temporary storage, US $ 0.117/hour, East US, windows VM  | PAYG                             | $137.24 
+| **Virtual machine (Data Science VM)(Optional)**     | Data Science VM windows -2016 Standard, B2s: 2 vCPU(s), 4GB RAM, 8GB Temporary storage   | PAYG                             | $41.66 
 | **Virtual machine(modbusvm)(Optional)**   | 1 A1 (1 vCPU(s), 1.75 GB RAM) x 730 Hours; Windows – (OS Only); Pay as you go; 0 managed OS disks – S4    | PAYG    | $65.70   
 |      |       | **Estimated monthly cost**       | **$105.67**
 |      |       | **Optional Cost**       | **$290.64**
