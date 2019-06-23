@@ -155,7 +155,7 @@ To deploy a template for Azure Resource Manager, follow the below steps.
 
 6.  The **Custom deployment** page is displayed as shown in the following.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/11.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg01.png)
 
 ### 4.1.1 Inputs
 These parameter values enable you to customize the deployment by providing values. There parameters allow to choose the solution type, region and credentials to authenticate SQL Database and Virtual Machines.
@@ -164,33 +164,33 @@ These parameter values enable you to customize the deployment by providing value
 
 8.  If you choose **No** then the **Edge VM + Simulator VM** vm  will be **not deployed** with in the solution, If you choose No, then the Edge VM and Simulator VM will be not deployed with in the solution, we have to manually deploy IoT Edge modules in Edge VM for more information refer the section 5.3 Perform Device Twin Operation on Edge VM.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/12.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg02.png)
 
 9.  If you choose **yes** for **ML VM** then Pre-installed **docker** will be **deployed** with in the solution.
 
 10. If you choose **No** for **ML VM** then Pre-installed **docker** will **not be deployed** with in the solution.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/13.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg03.png)
 
 **Parameters for Basic Solution**
 
 11. Deploy the template by providing the parameters in custom deployment settings as shown in the following figure.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters-basic11.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg04.png)
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters12.png)
 
 **Parameters for Standard Solution**
 
 12. If you want to deploy the core with monitoring you must enter the below parameters
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters-standard11.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg05.png)
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters12.png)
 
 **Parameters for Premium Solution**
 
 13. If you want to deploy the core with Hardening and Monitoring you must enter the below parameters.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters-premium11.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg06.png)
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters12.png)
 
 14. Once all the parameters are entered, select the **terms and conditions** check box and click **Purchase**.
