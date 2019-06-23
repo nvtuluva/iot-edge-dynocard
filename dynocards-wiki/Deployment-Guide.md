@@ -117,7 +117,7 @@ Resource Manager provides a consistent management layer to perform tasks through
 *   Apply access control to all services in your resource group because Role-Based Access Control (RBAC) is natively integrated into the management platform.
 *   Apply tags to resources to logically organize all the resources in your subscription.
 
-### 4.1  ARM Template Deployment using Azure Portal
+### 4.1 ARM Template Deployment using Azure Portal
 
 1.  Click the below **Git hub** repo URL.
 
@@ -157,7 +157,7 @@ To deploy a template for Azure Resource Manager, follow the below steps.
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/11.png)
 
-### 4.1.1. Inputs
+### 4.1.1 Inputs
 These parameter values enable you to customize the deployment by providing values. There parameters allow to choose the solution type, region and credentials to authenticate SQL Database and Virtual Machines.
 
 7.  If you choose **yes** for **Edge VM + Simulator VM** then **then Edge VM and Simulator VMs** will be **deployed** with in the solution.
@@ -234,7 +234,7 @@ The Outputs section consists of the values that are returned from deployment. Th
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/22.png)
 
-### 4.2. ARM Template Deployment Using Azure CLI
+### 4.2 ARM Template Deployment Using Azure CLI
 
 Azure CLI is used to deploy your resources to Azure. The Resource Manager template you deploy, can either be a local file on your machine, or an external file that is in a repository like GitHub.  
 Azure Cloud Shell is an interactive, browser-accessible shell for managing Azure resources. Cloud Shell enables access to a browser-based command-line experience built with Azure management tasks in mind. 
