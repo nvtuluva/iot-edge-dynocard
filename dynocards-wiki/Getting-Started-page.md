@@ -592,7 +592,7 @@ The Basic solution requires minimum Azure components with minimal available SKUâ
 
 * The Estimated Monthly Azure cost is: **$105.67**
 â€¯ 
-* The Estimated Monthly Azure cost (Including Optional Component) is: **$396.31**
+* The Estimated Monthly Azure cost (Including Optional Component) is: **$300.73**
 
 **Note**: Refer below table for the optional component list & Features
 
