@@ -181,7 +181,7 @@ Basic Architecture comprises of following components:
 
 * 1-Function App 
 
-* 1-Application Insights 
+* 2-Application Insights 
 
 * 1-Data Lake Storage 
 
@@ -195,15 +195,15 @@ Basic Architecture comprises of following components:
 
 * 1-SQL database 
 
-* 1-Storage account 
+* 2-Storage accounts 
 
 * 1-Stream Analytics job 
 
-* 1-Machine Learning Experiment Account 
-
-* 1-Machine Learning Management Account 
+* 1-Machine Learning Service workspace
 
 * 1 – Container registry  
+
+* 1 – key vault  
 
 **Note**: Please refer **section 2.5** for more details about the components.
 
@@ -223,13 +223,13 @@ The diagram below depicts the dataflow between Azure Components in Standard Solu
 
 Standard Architecture comprises of following components: 
 
-*	3-Virtual machines (2 windows & 1 Linux). One of the Windows VM is the **Dynocard VM** which has pre-installed PLC Simulator v1 and Modbus Simulator software’s. The second Windows VM is the **Machine Learning VM** which has  pre-installed Docker Containers and setup file for Azure ML workbench, which has to be installed by the user. The Linux VM is the **Edge VM** and is used to create and install modules in IoT Edge device. **VMs are optional Components**.
+*	3-Virtual machines (2 windows & 1 Linux). One of the Windows VM is the **Dynocard VM** which has pre-installed PLC Simulator v1 and Modbus Simulator software’s. The second Windows VM is the **Data Science Machine Learning VM** which is used  to run the notebooks to create experiments, register model, create image and to deploy webservices in ML service workspace. The Linux VM is the **Edge VM** and is used to create and install modules in IoT Edge device. **VMs are optional Components**.
 
 *	1-Web App
 
 *	1-Function App
 
-*	1-Application Insights
+*	2-Application Insights
 
 *	1-Data Lake Storage
 
@@ -243,15 +243,15 @@ Standard Architecture comprises of following components:
 
 *	2-SQL database
 
-*	1-Storage account
+*	2-Storage accounts
 
 *	1-Stream Analytics job
 
-*	1-Machine Learning Experiment Account
-
-*	1-Machine Learning Management Account
+*	1-Machine Learning service workspace
 
 *	1 – Container registry
+
+*	1 – key vault
 
 **Note**: Please refer **section 2.5** for more details about the components.
 
@@ -289,13 +289,13 @@ The below is the Architecture diagram of the Premium solution:
 
 Premium Architecture comprises of following components: 
 
-* 3-Virtual machines (2 windows & 1 Linux). One of the Windows VM is the **Dynocard VM** which has  pre-installed PLC Simulator and Modbus Simulator software’s. The second Windows VM is the **Machine Learning VM** which has pre-installed Docker Containers and setup file for Azure ML workbench, which has to be installed by the user. The Linux VM is the **Edge** VM and is used to create and  install modules for the IoT Edge devices. **VMs are optional Components**.
+* 3-Virtual machines (2 windows & 1 Linux). One of the Windows VM is the **Dynocard VM** which has  pre-installed PLC Simulator and Modbus Simulator software’s. The second Windows VM is the **Data Science Machine Learning VM** which is used  to run the notebooks to create experiments, register model, create image and to deploy webservices in ML service workspace. The Linux VM is the **Edge** VM and is used to create and  install modules for the IoT Edge devices. **VMs are optional Components**.
 
 * 2-Web App 
 
 * 1-Function App 
 
-* 1-Application Insights 
+* 2-Application Insights 
 
 * 2-Data Lake Storage 
 
@@ -309,15 +309,15 @@ Premium Architecture comprises of following components:
 
 * 2-SQL database 
 
-* 1-Storage account 
+* 2-Storage accounts 
 
 * 2-Stream Analytics job 
 
-* 1-Machine Learning Experiment Account 
-
-* 1-Machine Learning Management Account 
+* 1-Machine Learning service workspace 
 
 * 1 – container registry 
+
+* 1 – key vault 
 
 **Note**: Please refer **section 2.5** for more details about the components.
 
