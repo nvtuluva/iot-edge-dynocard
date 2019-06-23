@@ -780,7 +780,7 @@ The below Table explains the $ impact for the solutions by resources.
 | **Log Analytics**   | $2.30      | $2.30 	    | $2.30 
 | **Virtual machine (edgevm) (Optional)**    | $87.60 	    | $87.60     | $87.60 
 | **Virtual network (Optional)**    | $0.10 	  | $0.10 	     | $0.10 
-| **Virtual machine (MLVM) (Optional)**    | $41.66 	  | $41.66 	    | $41.66 
+| **Virtual machine (Data Science VM) (Optional)**    | $41.66 	  | $41.66 	    | $41.66 
 | **Virtual machine (modbusvm) (Optional)**    | $65.70 	  | $65.70    | $65.70 
 
 
