@@ -622,7 +622,7 @@ Prices are calculated by using the US East Location and Pricing Model is set to 
 | **Virtual machine (Data Science VM)(Optional)**     | Data Science VM windows -2016 Standard, B2s: 2 vCPU(s), 4GB RAM, 8GB Temporary storage   | PAYG                             | $41.66 
 | **Virtual machine(modbusvm)(Optional)**   | 1 A1 (1 vCPU(s), 1.75 GB RAM) x 730 Hours; Windows – (OS Only); Pay as you go; 0 managed OS disks – S4    | PAYG    | $65.70   
 |      |       | **Estimated monthly cost**       | **$105.67**
-|      |       | **Optional Cost**       | **$290.64**
+|      |       | **Optional Cost**       | **$195.06**
 |              |                               | **Estimated Monthly Cost (Including Optional)**                 | **$396.31**               
 
 #### 3.1.2. Standard
