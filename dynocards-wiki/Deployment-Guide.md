@@ -196,7 +196,7 @@ These parameter values enable you to customize the deployment by providing value
 
 13. If you want to deploy the core with Hardening and Monitoring you must enter the below parameters.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg06.PNG.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg06.PNG)
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/parameters12.png)
 
