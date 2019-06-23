@@ -623,7 +623,7 @@ Prices are calculated by using the US East Location and Pricing Model is set to 
 | **Virtual machine(modbusvm)(Optional)**   | 1 A1 (1 vCPU(s), 1.75 GB RAM) x 730 Hours; Windows – (OS Only); Pay as you go; 0 managed OS disks – S4    | PAYG    | $65.70   
 |      |       | **Estimated monthly cost**       | **$105.67**
 |      |       | **Optional Cost**       | **$195.06**
-|              |                               | **Estimated Monthly Cost (Including Optional)**                 | **$396.31**               
+|              |                               | **Estimated Monthly Cost (Including Optional)**                 | **$300.73**               
 
 #### 3.1.2. Standard
 
@@ -652,16 +652,16 @@ Prices are calculated by Location as **East US** and Pricing Model as **“PAYG�
 | **Stream Analytics**       | Standard Streaming Unit, 1 Units * US$ 80.30                          | PAYG                          | $80.30
 | **Azure Container Registry**       | Basic Tier, 1 units * 30 day * US$ 0.167 per unit per day = US$ 5.00, total WebHooks = 2, AS= 10GiB      | PAYG                             | $5.00
 | **ML Services**  | Model Management (Preview), Dev/Test, Location East US2(Managed models=20,managed deployments=2, Available Cores=4) | PAYG | $0.00
-| **Machine learning studio**   | Free    | PAYG   | $0.00
+| **Machine learning service workspace**   | Free    | PAYG   | $0.00
 | **Application Insights**  | 6 GB, 5 GB of data is included for free. 1 GB * $2.99  | PAYG  | $2.99 
 | **Log Analytics**    | 6 GB, 5 GB of data is included for free. 1 GB * $2.30  | PAYG  | $2.30
 | **Virtual machine (edgevm)(Optional - Depends on Customer Choice)**   | Standard, A2:2 core(s), 3.5 GB memory, 135GB Temporary storage, East US, Linux VM   | PAYG   | $87.60
 | **Virtual network(Optional)**     | 5GB Data transfer, Outbound data transfer 1*US$ 0.0100 per GB, Inbound data transfer 1*US$0.0100 per GB, East US | PAYG                             | $0.10 
 | **Virtual machine(modbusvm)(Optional)**   | 1 A1 (1 vCPU(s), 1.75 GB RAM) x 730 Hours; Windows – (OS Only); Pay as you go; 0 managed OS disks – S4    | PAYG    | $65.70 
-| **Virtual machine (MLVM)(Optional)**     | Standard, D2 v3:2 vCPU(s), 8GB RAM, 50GB Temporary storage, US $ 0.117/hour, East US, windows VM  | PAYG                             | $137.24   
+| **Virtual machine (Data Science VM)(Optional)**     | Data Science VM windows -2016 Standard, B2s: 2 vCPU(s), 4GB RAM, 8GB Temporary storage   | PAYG                             | $41.66  
 |      |       | **Estimated monthly cost**       | **$301.21**
-|      |       | **Optional Cost**       | **$290.64**
-|              |                               | **Estimated Monthly Cost (Including Optional)**                 | **$591.85**             
+|      |       | **Optional Cost**       | **$195.06**
+|              |                               | **Estimated Monthly Cost (Including Optional)**                 | **$496.27**             
 
 **Note**: When we redeploy the solution, there will be no  extra cost, since primary region is already paid for. 
 
@@ -693,16 +693,16 @@ Prices are calculated by Considering Location as **East US** and Pricing Model a
 | **Stream Analytics**       | 2 * (Standard Streaming Unit, 1 Units * US$ 80.30) (2 * 80.30)                          | PAYG                          | $160.60 
 | **Azure Container Registry**       | Basic Tier, 1 units * 30 day * US$ 0.167 per unit per day = US$ 5.00, total WebHooks = 2, AS= 10GiB      | PAYG                             | $5.00
 | **ML Services**  | Model Management (Preview), Dev/Test, Location East US2(Managed models=20, managed deployments=2, Available Cores=4) | PAYG     | $0.00
-| **Machine learning studio**   | Free    | PAYG   | $0.00
+| **Machine learning service workspace**   | Free    | PAYG   | $0.00
 | **Application Insights**  | 6 GB, 5 GB of data is included for free. 1 GB * $2.99  | PAYG  | $2.99 
 | **Log Analytics**    | 6 GB, 5 GB of data is included for free. 1 GB * $2.30  | PAYG  | $2.30
 | **Virtual machine (edgevm)(optional)**   | Standard, A2:2 core(s), 3.5 GB memory, 135GB Temporary storage, East US, Linux VM   | PAYG   | $87.60 
 | **Virtual network**     | 5GB Data transfer, Outbound data transfer 1*US$ 0.0100 per GB, Inbound data transfer 1*US$0.0100 per GB, East US | PAYG                             | $0.10
 | **Virtual machine(modbusvm)(Optional)**   | 1 A1 (1 vCPU(s), 1.75 GB RAM) x 730 Hours; Windows – (OS Only); Pay as you go; 0 managed OS disks – S4    | PAYG    | $65.70 
-| **Virtual machine (MLVM)(Optional)**     | Standard, D2 v3:2 vCPU(s), 8GB RAM, 50GB Temporary storage, US $ 0.117/hour, East US, windows VM  | PAYG                             | $137.24  
+| **Virtual machine (Data Science VM)(Optional)**     | Data Science VM windows -2016 Standard, B2s: 2 vCPU(s), 4GB RAM, 8GB Temporary storage   | PAYG                             | $41.66  
 |      |       | **Estimated monthly cost**       | **$391.69**
-|      |       | **Optional Cost**       | **$290.64**
-|              |                               | **Estimated Monthly Cost (Including Optional)**                 | **$682.33**               
+|      |       | **Optional Cost**       | **$195.06**
+|              |                               | **Estimated Monthly Cost (Including Optional)**                 | **$586.75**               
 
 
 ## 3.2 Solution Features and Cost Comparison: 
