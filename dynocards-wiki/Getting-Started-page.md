@@ -613,7 +613,6 @@ Prices are calculated by using the US East Location and Pricing Model is set to 
 | **SQL Database**        | B1 (Basic tier), 5DTUs, 2GB included storage per DB, US$ 0.0067/hour      | PAYG                       | $4.90  
 | **Stream Analytics**       | Standard Streaming Unit, 1 Units * US$ 80.30                          | PAYG                          | $80.30
 | **Azure Container Registry**       | Basic Tier, 1 units * 30 day * US$ 0.167 per unit per day = US$ 5.00, total WebHooks = 2, AS= 10GiB      | PAYG                             | $5.00
-| **ML Services**   | Model Management (Preview), Dev/Test, Location East US2(Managed models=20,managed deployments=2, Available Cores=4)| PAYG  | $0.00
 | **Machine learning Service workspace**   | Free    | PAYG   | $0.00
 | **Application Insights**     | 6 GB, 5 GB of data is included for free. 1 GB * $2.99   | PAYG                             | $2.99
 | **Log Analytics**     | 6 GB, 5 GB of data is included for free. 1 GB * $2.30   | PAYG                             | $2.30
@@ -632,7 +631,7 @@ Deploy the Standard solution when you want monitoring, high availability and sec
 This Solution provides (Core + Monitoring + Hardening) features such as Application Insights, OMS Log Analytics, High Availability, Security & Disaster Recovery. The details of the components used in this solution is listed in section below: 
 
 * The Estimated Monthly Azure cost is: **301.21**  
-* The Estimated monthly Azure cost (Including Optional Component) is: **591.85**  
+* The Estimated monthly Azure cost (Including Optional Component) is: **496.27**  
 
 **Note**: Refer below table for the optional component list & Features
 
@@ -651,7 +650,6 @@ Prices are calculated by Location as **East US** and Pricing Model as **“PAYG�
 | **SQL Database**        | 2 * (Single Database, DTU Purchase Model, Standard Tier, S0: 10 DTUs, 250 GB included storage per DB, 1 Database(s) x 730 Hours, 5 GB Retention)       | PAYG                       | $29.44  
 | **Stream Analytics**       | Standard Streaming Unit, 1 Units * US$ 80.30                          | PAYG                          | $80.30
 | **Azure Container Registry**       | Basic Tier, 1 units * 30 day * US$ 0.167 per unit per day = US$ 5.00, total WebHooks = 2, AS= 10GiB      | PAYG                             | $5.00
-| **ML Services**  | Model Management (Preview), Dev/Test, Location East US2(Managed models=20,managed deployments=2, Available Cores=4) | PAYG | $0.00
 | **Machine learning service workspace**   | Free    | PAYG   | $0.00
 | **Application Insights**  | 6 GB, 5 GB of data is included for free. 1 GB * $2.99  | PAYG  | $2.99 
 | **Log Analytics**    | 6 GB, 5 GB of data is included for free. 1 GB * $2.30  | PAYG  | $2.30
@@ -673,7 +671,7 @@ This solution also provides (Core + Monitoring + Hardening), the difference betw
 
 * The Estimated Monthly Azure cost is: **$391.69**  
 
-* The Estimated Monthly Azure cost (Including Optional Component) is: **$682.33**  
+* The Estimated Monthly Azure cost (Including Optional Component) is: **$586.75**  
 
 **Note**: Refer below table for the optional component list & Features 
 
@@ -692,7 +690,6 @@ Prices are calculated by Considering Location as **East US** and Pricing Model a
 | **SQL Database**        | 2 * (Single Database, DTU Purchase Model, Standard Tier, S0: 10 DTUs, 10 GB included storage per DB, 1 Database(s) x 730 Hours, 5 GB Retention)      | PAYG                       | $29.44 
 | **Stream Analytics**       | 2 * (Standard Streaming Unit, 1 Units * US$ 80.30) (2 * 80.30)                          | PAYG                          | $160.60 
 | **Azure Container Registry**       | Basic Tier, 1 units * 30 day * US$ 0.167 per unit per day = US$ 5.00, total WebHooks = 2, AS= 10GiB      | PAYG                             | $5.00
-| **ML Services**  | Model Management (Preview), Dev/Test, Location East US2(Managed models=20, managed deployments=2, Available Cores=4) | PAYG     | $0.00
 | **Machine learning service workspace**   | Free    | PAYG   | $0.00
 | **Application Insights**  | 6 GB, 5 GB of data is included for free. 1 GB * $2.99  | PAYG  | $2.99 
 | **Log Analytics**    | 6 GB, 5 GB of data is included for free. 1 GB * $2.30  | PAYG  | $2.30
@@ -740,9 +737,7 @@ The below table explain the distinctive features available across solution types
 |                  | Streaming Unit       | 1 Units	        | 1 Units         | 1 Units
 | Azure Container Registry         | SKU	        | Basic         | Basic	          | Basic
 |            | Units              |	1	         | 1	             | 1
-|ML Services	    | Feature	          | Model Management (Preview)        | Model Management (Preview)	       | Model Management (Preview)
-|                  | Tier	        | Dev/Test	        | Dev/Test	       | Dev/Test
-| Machine learning studio       | SKU	       | Free	       | Free	       | Free
+| Machine learning service workspace       | SKU	       | Free	       | Free	       | Free
 | Application Insights        |	Logs collected	       | 6 GB, 5 GB of data is included for free.	    | 6 GB, 5 GB of data is included for free.	     | 6 GB, 5 GB of data is included for free.
 | Log Analytics	       | Logs ingested	       | 5 GB of data is included for free. An average Azure VM ingests 1 GB to 3 GB	      | 5 GB of data is included for free. An average Azure VM ingests 1 GB to 3 GB	       | 5 GB of data is included for free. An average Azure VM ingests 1 GB to 3 GB
 | Virtual machine (edgevm) (Optional - Depends on Customer Choice)	       | SKU	           | Standard	         | Standard	        | Standard
@@ -753,10 +748,10 @@ The below table explain the distinctive features available across solution types
 | Virtual network (Optional)	        | Data Transfer	        | 5 GB	           | 5 GB	             | 5 GB
 |                   | Outbound data transfer           | 5       	          | 5	                   | 5
 |                 |	Inbound data transfer	             | 5	            | 5	                 | 5
-| Virtual machine (MLVM) (Optional)	        | SKU	              | Standard, D2 v3	       | Standard, D2 v3	        | Standard, D2 v3
+| Virtual machine (Data Science VM) (Optional)	        | SKU	              | Standard, B2s	       | Standard, B2s	        | Standard, B2s
 |                  | Cores	           | 2 vCPU(s)	        | 2 vCPU(s)	          | 2 vCPU(s)
-|                 |	RAM           | 8 GB	       | 8 GB	      | 8 GB
-|                | Storage	          | 50 GB	          | 50 GB	            | 50 GB
+|                 |	RAM           | 4 GB	       | 4 GB	      | 4 GB
+|                | Storage	          | 8 GB	          | 8 GB	            | 8 GB
 |	            |OS           |	Windows VM	              | Windows VM	                  | Windows VM
 | Virtual machine (modbusvm) (Optional)        | SKU	           | Standard	            |Standard, D2 v3	        | Standard, D2 v3
 |                      | Cores	            | 1 Core	          | 2 vCPU(s)	               | 2 vCPU(s)
@@ -779,15 +774,14 @@ The below Table explains the $ impact for the solutions by resources.
 | **Service Bus Namespace**    |	$9.81     |	$9.81   |	$19.62 
 | **SQL Database** | $4.90      |	$29.44     | 	$29.44 
 | **Stream Analytics** | $80.30 	 | $80.30   |  $160.60 
-| **Azure Container Registry**    | $5.00 	    | $5.00     |	$5.00 
-| **ML Services**	| $0.00 	 | $0.00     | $0.00 
-| **Machine learning studio**    | $0.00      | $0.00     | $0.00 
+| **Azure Container Registry**    | $5.00 	    | $5.00     |	$5.00  
+| **Machine learning service workspace**    | $0.00      | $0.00     | $0.00 
 | **Application Insights**    | $2.99 	  | $2.99 	   | $2.99 
 | **Log Analytics**   | $2.30      | $2.30 	    | $2.30 
 | **Virtual machine (edgevm) (Optional)**    | $87.60 	    | $87.60     | $87.60 
 | **Virtual network (Optional)**    | $0.10 	  | $0.10 	     | $0.10 
-| **Virtual machine (MLVM) (Optional)**    | $137.24 	  | $65.70 	    | $65.70 
-| **Virtual machine (modbusvm) (Optional)**    | $65.70 	  | $137.24    | $137.24 
+| **Virtual machine (MLVM) (Optional)**    | $41.66 	  | $41.66 	    | $41.66 
+| **Virtual machine (modbusvm) (Optional)**    | $65.70 	  | $65.70    | $65.70 
 
 
 ### 3.2.3. Estimated Monthly Cost for each Solution:
@@ -795,8 +789,8 @@ The below Table explains the $ impact for the solutions by resources.
 | **Resource Name**                 | **Basic**           | **Standard**            | **Premium**
 | -------------                  | -------------          | -------------            | ------------- 
 | **Estimated monthly cost**     | **$105.67**            | **$301.21** 	              | **$391.69** 
-| **Optional Cost**      | **$290.64** 	       | **$290.64** 	              | **$290.64** 
-| **Estimated monthly cost (Including Optional)**       | **$396.31** 	       | **$591.85** 	              | **$682.33** 
+| **Optional Cost**      | **$195.06** 	       | **$195.06** 	              | **$195.06** 
+| **Estimated monthly cost (Including Optional)**       | **$300.73** 	       | **$496.27** 	              | **$586.75** 
 
 
 ## 4. Further Reference
