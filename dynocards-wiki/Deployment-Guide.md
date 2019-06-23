@@ -638,7 +638,7 @@ Copy the name of ML Service workspace name, Resource group name and subscription
 Go back to Data science VM and update the config.json file.
 
 {
-    **"subscription_id": "xxxxxxxxxxxxxxxxxxxxx",
+    **"subscription_id": "xxxxxxxxxxxxxxxxxxxxx",**
     
     
    **"resource_group": " AS-OilNGas0623",**
