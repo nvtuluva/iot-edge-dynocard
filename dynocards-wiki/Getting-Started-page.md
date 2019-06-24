@@ -136,7 +136,7 @@ Core Architecture components:
 
 ### 2.2 Automated Solution
 
-The Automated IoT Solution is designed on the top of existing core solution architecture. In addition, this solution also provides Monitoring, High availability and Security.. 
+The Automated IoT Solution is designed on the top of existing core solution architecture. In addition, this solution also provides Monitoring, High availability and Security.
 
 This solution is deployed through an ARM template. This is a single click deployment which reduces manual effort when compared with the exiting solution.. 
 
@@ -274,7 +274,7 @@ When there is an Azure Region failover, user needs to redeploy the ARM Template 
 
 #### 2.3.3 Premium Architecture
 
-The Premium solution will have all of the components from the Standard solution and in addition, the Premium Architecture will be deploying the solution to two regions right when the solution is first deployed. The failover is an automatic process (a partially automated solution) and the two deployments are :
+The Premium solution will have all of the components from the Standard solution and in addition, the Premium Architecture will be deploying the solution to two regions right when the solution is first deployed. The failover is an automatic process (a partially automated solution) and the two deployments are:
 
 1.	Primary Region (fully deployed)
 
@@ -604,7 +604,7 @@ Azure function App HTTP trigger url is accessed through IoT edge script inside t
 
 ### 3.1 Solutions and Associated Costs 
 
-The Automated solutions provided by us covers in Section …. Will have the following Cost associated. The solutions are created considering users requirements & have Cost effective measures. User have control on what Type of azure resources need to be deploy with respect to SKU and Cost. These options will let user to choose whether user wants to deploy azure resources with minimal SKU and Production ready SKU. The Cost Models per solutions are explained in future sections:
+The Automated solutions provided by us covers in Section. Will have the following Cost associated. The solutions are created considering users requirements & have Cost effective measures. User have control on what Type of azure resources need to be deploy with respect to SKU and Cost. These options will let user to choose whether user wants to deploy azure resources with minimal SKU and Production ready SKU. The Cost Models per solutions are explained in future sections:
 
 #### 3.1.1 Basic 
 
@@ -684,7 +684,7 @@ Prices are calculated by Location as **East US** and Pricing Model as **“PAYG�
 |      |       | **Optional Cost**       | **$195.06**
 |              |                               | **Estimated Monthly Cost (Including Optional)**                 | **$496.27**             
 
-**Note**: When we redeploy the solution, there will be no  extra cost, since primary region is already paid for. 
+**Note**: When we redeploy the solution, there will be no extra cost, since primary region is already paid for. 
 
 #### 3.1.3 Premium
 
