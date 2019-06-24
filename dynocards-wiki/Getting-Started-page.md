@@ -11,11 +11,11 @@
     - [1.2 IoT Solution Summary](#12-iot-solution-summary)
         - [1.2.1 Highlights](#121-highlights)
         - [1.2.2 About the Solution](#122-about-the-solution)
-- [2.0 IoT Solutions Automation and Hardening](#20-iot-solutions-automation-and-hardening)
+- [2.0 IoT Solution Automation and Hardening](#20-iot-solution-automation-and-hardening)
     - [2.1 Existing Solution](#21-existing-solution)
         - [2.1.1 Core Architecture (Current)](#211-core-architecture-(current))
     - [2.2 Automated Solution](#22-automated-solution)
-    - [2.3 Architectural Updates](#23-architectural-updates)
+    - [2.3 Architectures](#23-architectures)
         - [2.3.1 Basic Architecture](#231-basic-architecture)
         - [2.3.2 Standard Architecture](#232-standard-architecture)
         - [2.3.3 Premium Architecture](#233-premium-architecture)
@@ -134,7 +134,7 @@ Core Architecture components:
 
 **Note**: Please refer **section 2.5** for more details about the components.
 
-### 2.2 Automated  Solution
+### 2.2 Automated Solution
 
 The Automated IoT Solution is designed on the top of existing core solution architecture. In addition, this solution also provides Monitoring, High availability and Security.. 
 
