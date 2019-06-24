@@ -6,12 +6,12 @@
 
 **Table of Contents** 
 
-- [1 Introduction](#1-introduction)
+- [1.0 Introduction](#10-introduction)
     - [1.1 Overview](#11-overview)
     - [1.2 IoT Solution Summary](#12-iot-solution-summary)
         - [1.2.1 Highlights](#121-highlights)
         - [1.2.2 About the Solution](#122-about-the-solution)
-- [2 IoT Solutions Automation and Hardening](#2-iot-solutions-automation-and-hardening)
+- [2.0 IoT Solutions Automation and Hardening](#20-iot-solutions-automation-and-hardening)
     - [2.1 Existing Solution](#21-existing-solution)
         - [2.1.1 Core Architecture (Current)](#211-core-architecture-(current))
     - [2.2 Automated Solution](#22-automated-solution)
@@ -36,7 +36,7 @@
         - [2.5.13 Application Insights](#2512-application-insights)
         - [2.5.14 OMS Log Analytics](#2514-oms-log-analytics)
         - [2.5.15 Function App](#2515-function-app)
-- [3 Solution Types & Deployment Costs](#3-solution-types-&-deployment-costs)
+- [3.0 Solution Types and Deployment Costs](#30-solution-types-and-deployment-costs)
     - [3.1 Solutions and Associated Costs](#31-solutions-and-associated-costs)
         - [3.1.1 Basic](#311-basic)
         - [3.1.2 Standard](#312-standard)
@@ -45,13 +45,13 @@
         - [3.2.1 In terms of features](#321-in-terms-of-features)
         - [3.2.2 Solution Cost Impact](#322-solution-cost-impact)
         - [3.2.3 Estimated Monthly Cost for each Solution](#323-estimated-monthly-cost-for-each-solution)
-- [4 Further References](#4-further-references)
+- [4.0 Further References](#40-further-references)
     - [4.1 Deployment Guide](#41-deployment-guide)
     - [4.2 Admin Guide](#42-admin-guide)
     - [4.3 User Guide](#43-user-guide)
 
 
-## 1 Introduction
+## 1.0 Introduction
 
 ### 1.1 Overview
 
@@ -79,7 +79,7 @@ Oil and Gas companies can remotely monitor the condition of the sucker pumps.
 
 *	This Solution is beneficial to inspect thousands of sucker pumps throughout remote areas of the world by issuing alerts. Based on the alerts that are received to the cloud, the field technicians can repair the appropriate sucker pumps.
 
-## 2 IoT Solution Automation and Hardening
+## 2.0 IoT Solution Automation and Hardening
 
 ### 2.1 Existing Solution
 
@@ -159,7 +159,6 @@ In addition, this solution consists
 *	Securing steps for SQL Database with Enable Firewall, SQL Database Authentication, Advanced Threat Protection, Auditing and Transparent Data Encryption options. We can restrict access from unwanted networks.
 
 *	This solution also provides Disaster Recovery activities  IoT Hub manual failover is helpful to make the IoT Hub available in another region, when IoT Hub of one region is failed. 
-
 
 ### 2.3 Architectures
 
@@ -601,13 +600,13 @@ Implementation:
 
 Azure function App HTTP trigger url is accessed through IoT edge script inside the edge VM, which will create an edge device in IoT Hub.
 
-## 3 Solution Types & Deployment Costs
+## 3.0 Solution Types and Deployment Costs
 
 ### 3.1 Solutions and Associated Costs 
 
 The Automated solutions provided by us covers in Section …. Will have the following Cost associated. The solutions are created considering users requirements & have Cost effective measures. User have control on what Type of azure resources need to be deploy with respect to SKU and Cost. These options will let user to choose whether user wants to deploy azure resources with minimal SKU and Production ready SKU. The Cost Models per solutions are explained in future sections:
 
-#### 3.1.1. Basic 
+#### 3.1.1 Basic 
 
 This solution is mostly recommended for a PoC or Piloting environment. Deploy the Basic solution when you want only to need the monitoring for the Azure components. Also, when the Basic solution is deployed, no high availability is provided. 
 
@@ -647,7 +646,7 @@ Prices are calculated by using the US East Location and Pricing Model is set to 
 |      |       | **Optional Cost**       | **$195.06**
 |              |                               | **Estimated Monthly Cost (Including Optional)**                 | **$300.73**               
 
-#### 3.1.2. Standard
+#### 3.1.2 Standard
 
 Deploy the Standard solution when you want monitoring, high availability and security/hardening for the deployed components. High availability is achieved by deploying the components in two regions. When the primary region fails , the secondary region needs to be redeployed (manual effort required).
 
@@ -687,7 +686,7 @@ Prices are calculated by Location as **East US** and Pricing Model as **“PAYG�
 
 **Note**: When we redeploy the solution, there will be no  extra cost, since primary region is already paid for. 
 
-#### 3.1.3. Premium
+#### 3.1.3 Premium
 
 Deploy the Premium solution when you require Monitoring, High Availability and Hardening/Security for the deployed components. High availability is achieved by deploying the same components in two regions at the same time. No redeployment is required in this solution.
 
@@ -808,7 +807,7 @@ The below Table explains the $ impact for the solutions by resources.
 | **Virtual machine (modbusvm) (Optional)**    | $65.70 	  | $65.70    | $65.70 
 
 
-### 3.2.3. Estimated Monthly Cost for each Solution:
+### 3.2.3 stimated Monthly Cost for each Solution:
 
 | **Resource Name**                 | **Basic**           | **Standard**            | **Premium**
 | -------------                  | -------------          | -------------            | ------------- 
@@ -817,27 +816,25 @@ The below Table explains the $ impact for the solutions by resources.
 | **Estimated monthly cost (Including Optional)**       | **$300.73** 	       | **$496.27** 	              | **$586.75** 
 
 
-## 4. Further Reference
+## 4.0 Further Reference
 
-### 4.1. Deployment Guide
+### 4.1 Deployment Guide
 
 To Deploy the Oil & Gas solution please refer Deployment guide in the Provided Documents.
 
 https://github.com/BlueMetal/iot-edge-dynocard/blob/master/dynocards-wiki/Deployment-Guide.md
 
-### 4.2. Admin Guide
+### 4.2 Admin Guide
 
 Refer Admin Guide to perform Administrator tasks of the Solution in Azure Portal.
 
 https://github.com/BlueMetal/iot-edge-dynocard/blob/master/dynocards-wiki/Admin-Guide-Page.md
 
-### 4.3. User Guide
+### 4.3 User Guide
 
 Refer User Guide to find how to use Oil & Gas solution once deployed successfully in Azure portal. 
 
 https://github.com/BlueMetal/iot-edge-dynocard/blob/master/dynocards-wiki/User-Guide.md
-
-
 
 
 ************************************* END OF DOCUMENT *************************************
