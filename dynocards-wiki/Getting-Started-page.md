@@ -272,7 +272,7 @@ When there is an Azure Region failover, user needs to redeploy the ARM Template 
 
 **Note**: Please refer **section 2.5** for more details about the components.
 
-#### 2.3.3 Premium  Architecture:
+#### 2.3.3 Premium Architecture
 
 The Premium solution will have all of the components from the Standard solution and in addition, the Premium Architecture will be deploying the solution to two regions right when the solution is first deployed. The failover is an automatic process (a partially automated solution) and the two deployments are :
 
