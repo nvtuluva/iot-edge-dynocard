@@ -52,11 +52,13 @@
 
 
 ## 1 Introduction
+
 ### 1.1 Overview
 
 Oil and Gas Companies wants to operate the sucker pumps in an Efficient, Safe, Eco – Friendly & responsible manner. Companies are using dynamometers (dyno) surveys to determine the condition of the pump operating under ground or downhole. Medium to large oil companies have thousands of these pumps scattered remotely across the world. Monitoring the dynamometers with the current setup is ideally very expensive, Time Consuming & ineffective solution.  To have Efficient & Effective solution to overcome the problem, we have come up with the Automated Solution which is Reliable, Cost Effective, Scalable & useful across the industry.
 
 ### 1.2 IoT Solution Summary
+
 #### 1.2.1 Highlights:
 
 The Rationale behind this IoT Solution specifically designed for the Oil & Gas industry is to: 
@@ -359,39 +361,52 @@ Analytics drives business value in IoT solutions, but not all analytics needs to
 
 Azure IoT Edge is made up of three components:
 
-•	IoT Edge modules: These are containers that run Azure services, 3rd party services, or your own code. They are deployed to IoT Edge devices and execute locally on those devices.
+*	IoT Edge modules: These are containers that run Azure services, 3rd party services, or your own code. They are deployed to IoT Edge devices and execute locally on those devices.
 
-•	The IoT Edge runtime: This runs on each IoT Edge device and manages the modules deployed to each device.
+*	The IoT Edge runtime: This runs on each IoT Edge device and manages the modules deployed to each device.
 
-•	The Interface: A cloud-based interface enables you to remotely monitor and manage IoT Edge devices.
+*	The Interface: A cloud-based interface enables you to remotely monitor and manage IoT Edge devices.
 
 **Implementation**:
 
 In the solution implementation, the IoT Edge device gathers data from the Simulator and processes the data into the IoTHub service. Below modules will be installed on the IoT Edge System.
 
 * sql 
+
 * modbus 
+
 * dynocardalertModule 
-* Mlalertmodule 
+
+* Mlalertmodule
+
 * edgeAgent 
+
 * edgeHub 
-* dynoCardWebApi 
+
+* dynoCardWebApi
+
 * dynocard_telemetry
+
 * dynocard_web
-
-
 
 In this solution, the IoT Edge VM is an Optional Component, which lets users  choose whether they want to deploy the IoT Edge device in a Cloud Based environment or  deploy it on premise. When deployed  in a Virtual Machine, ARM Template will configure all the required parameters. If deployed on premise, it might require running some additional manual configurations.
 
 Here is a description of the 9 modules
 
 * modbus                - the modbus protocol adapter
+
 * dynoCardAlertModule   - the custom logic in C# to handle parsing all the messages and sending the alerts to the IoT Hub
+
 * mlAlertModule         - the machine learning module that detects the anomalies
+
 * dynocard_telemetry    - custom C# code that generates the device telemetry without the need for an actual device
+
 * sql                   - the SQL Server DB
+
 * dynoCardWebAPI        - a web app running on the edge that accesses the data for the local web UI
+
 * dynocard_web          - the locally running web application that displays the dynocard graph
+
 * edgeAgent & edgeHub   - system provided modules that manage the edge runtime.
 
 
@@ -410,13 +425,21 @@ The Azure IoT Hub offers several services for connecting IoT devices with Azure 
 IoT Hub is the core component of the Dynocard Solution. IoT Edge VM will send the data to the IoT Hub using the Edge Modules. These are the modules present in the IoT Edge device.
 
 * sql 
+
 * modbus 
+
 * dynocardalertModule 
+
 * Mlalertmodule 
+
 * edgeAgent 
+
 * edgeHub 
+
 * dynoCardWebApi 
+
 * dynocard_telemetry
+
 * dynocard_web 
 
 #### 2.5.4 Stream Analytics Job 
@@ -631,6 +654,7 @@ Deploy the Standard solution when you want monitoring, high availability and sec
 This Solution provides (Core + Monitoring + Hardening) features such as Application Insights, OMS Log Analytics, High Availability, Security & Disaster Recovery. The details of the components used in this solution is listed in section below: 
 
 * The Estimated Monthly Azure cost is: **301.21**  
+
 * The Estimated monthly Azure cost (Including Optional Component) is: **496.27**  
 
 **Note**: Refer below table for the optional component list & Features
