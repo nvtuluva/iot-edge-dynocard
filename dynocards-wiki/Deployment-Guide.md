@@ -32,9 +32,9 @@
     - [6.10 Update myenv.yaml file](#610-update-myenv.yaml-file)
     - [6.11 Create deployment Notebook](#611-create-deployment-notebook)
     - [6.12 Run Deployment Notebook](#612-run-deployment-notebook)
-    	- [6.12.1 Check the image](#6121-check-the-image)
-    	- [6.12.2 Check the Deployment](#6122-check-the-deployment)
-	
+        - [6.12.1 Run to test webservice](#6121-run-to-test-webservice)
+    	- [6.12.2 Check the image](#6122-check-the-image)
+    	- [6.12.3 Check the Deployment](#6123-check-the-deployment)
 	
 ## 1.0 Deployment Guide
 
@@ -1680,6 +1680,8 @@ AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
 
 127.0.0.1 - - [19/Jun/2019:07:44:02 +0000] "GET /rails/info/properties HTTP/1.0" 404 232 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
 
+#### 6.12.1 Run to test webservice
+
 Run the next cell to test the web service.
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d0106.png)
@@ -2045,7 +2047,7 @@ Scoring Timer is set to 3600.0 seconds
 
 127.0.0.1 - - [19/Jun/2019:08:29:06 +0000] "POST /score HTTP/1.0" 200 95 "-" "python-requests/2.21.0"
 
-#### 6.12.1 Check the image
+#### 6.12.2 Check the image
 
 To check the image, go to Workspace and Navigate to Image blade.
 
@@ -2055,7 +2057,7 @@ Click on the image to see the details.
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d0109.png)
  
-#### 6.12.2 Check the Deployment
+#### 6.12.3 Check the Deployment
 
 To check the deployment, go to Workspace and Navigate to deployment blade. 
 
