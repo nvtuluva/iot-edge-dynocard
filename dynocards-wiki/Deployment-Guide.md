@@ -132,15 +132,15 @@ Resource Manager provides a consistent management layer to perform tasks through
 
 2. Select **main-template.json** from **master** branch as shown in the following figure.
  
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/5.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/5.PNG)
 
 3. Select **Raw** from the top right corner.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/6.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/6.PNG)
 
 4. **Copy** the raw template and **paste** in your azure portal for template deployment.
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/7.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/7.PNG)
 
 To deploy a template for Azure Resource Manager, follow the below steps.
 
@@ -296,7 +296,7 @@ Customize main-template.parameters.json file
 
 8. Paste your **main-template.json** in editor as shown below and save the file. 
 
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/24.png) 
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/24.PNG) 
 
 9. Paste your **main-template.parameters.json** in editor. 
 
@@ -307,6 +307,8 @@ Customize main-template.parameters.json file
 *   Edge VM + Simulator VM
 
 *   Data Science VM
+
+*   Data Science VMSize
 
 *   dataLakelocation
 
@@ -330,7 +332,7 @@ Customize main-template.parameters.json file
 
 *   vmsPassword
  
-![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/25.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/25.PNG)
 
 11. Create Resource Group for oilandgas Solution 
 
@@ -2063,4 +2065,3 @@ Click on the **deployment** to see the details.
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/d0111.png)
  
-
