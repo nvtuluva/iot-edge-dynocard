@@ -29,65 +29,65 @@ This Document explains how to use the Dyno Card solution, specifically it explai
 
 1. Go to the deployed resource group, click on **Container registry**, In container registry overview click on Access Keys. 
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml1.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml1.png)
 
 2. Copy and note the login server name, username, password in notepad will use those values later.
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml2.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml2.png)
 
 3. Now click on Machine learning service workspace resource, then click on **images** options in over view.In images click on anomaly-svc image name.
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml3.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml3.png)
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml4.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml4.png)
 
 4. Copy and note the location value in notepad.
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml5.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml5.png)
 
 ## 2.1 Login to IoT edge Virtual Machine
 
 1. Go to the **resource group** and click on **IoT Edge Virtual Machine**.
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml6.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml6.png)
 
 2. Copy the **public IP** address.
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml7.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml7.png)
 
 3. Open **putty** and paste the public IP address, Click on **Open**
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml8.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml8.png)
 
 4. Click yes on security alert popup and Provide user name and password. User Name : **adminuser** Password : **Password@1234**
 
 **Note**:Credentials might vary depends on deployment.
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml9.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml9.png)
 
 5. After login edit the deployment.json file by below command.
 
 **vim deployment.json**
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml10.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml10.png)
 
 6. In **modulesContent** update the container registry values username ,password and address with acr login server name which you copied in notepad before. 
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml11.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml11.png)
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml12.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml12.png)
 
 7. In line number 67, **mlAlertModule** update the image value with copied location value from machine learning workspace before.
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml13.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml13.png)
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml14.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml14.png)
 
 8. After that Save the file and run the below command to restart the iotedge service.
 
 **sudo systemctl restart iotedge**
 
-![alt text](https://github.com/BlueMetal/iot-edge-dynocard/blob/master/images/ml15.png)
+![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/ml15.png)
 
 ## 3.Running Modbus Simulator
 
