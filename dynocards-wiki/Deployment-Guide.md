@@ -170,9 +170,9 @@ These parameter values enable you to customize the deployment by providing value
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg02.PNG)
 
-9.  If you choose **yes** for **ML VM** then Pre-installed **docker** will be **deployed** with in the solution.
+9.  If you choose **yes** for **Data Science VM** then Pre-installed **docker** will be **deployed** with in the solution.
 
-10. If you choose **No** for **ML VM** then Pre-installed **docker** will **not be deployed** with in the solution.
+10. If you choose **No** for **Data Science VM** then Pre-installed **docker** will **not be deployed** with in the solution.
 
 ![alt text](https://github.com/nvtuluva/iot-edge-dynocard/blob/master/images/dg03.PNG)
 
@@ -204,7 +204,7 @@ These parameter values enable you to customize the deployment by providing value
 
 15. After the successful deployment of the ARM template, the following **resources** are created in a **Resource Group**.
 
-16. When you choose Costing model as **Standard** and the **Modbus VM** and **ML VM** as **Yes**, then the below components will be installed.
+16. When you choose Costing model as **Standard** and the **Modbus VM** and **Data Science VM** as **Yes**, then the below components will be installed.
 
 * 3-Virtual machines (2 windows & 1 Linux)
 
@@ -212,7 +212,7 @@ Windows VMS
 
 **Dyno card VM** which install pre-installed software's for dyno card VM.
 
-**ML VM** which install pre-installed docker.
+**Data Science VM** which install pre-installed docker.
 
 Linux VM
 
@@ -302,7 +302,7 @@ Customize main-template.parameters.json file
 
 *   Edge VM + Simulator VM
 
-*   MLVM
+*   Data Science VM
 
 *   dataLakelocation
 
